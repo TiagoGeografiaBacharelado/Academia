@@ -13,7 +13,7 @@ public class InstrutorTurmaModels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // Criado só para ter uma primary key
+    private int id;
 
     @Column(name = "id_instrutor")
     private int idInstrutor;

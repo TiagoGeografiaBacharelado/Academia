@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public class InstrutorRepositoryMySQLImpl implements InstrutorRepository {
 
-    // Lista para simular o banco de dados (em memória)
     private List<InstrutorModels> instrutores = new ArrayList<>();
 
     @Override
