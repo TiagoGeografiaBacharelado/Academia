@@ -3,7 +3,7 @@ package com.example.SmartAcademy.repositories.mysql;
 import com.example.SmartAcademy.models.UsuarioModels;
 import java.util.List;
 import java.util.Optional;
-import com.example.SmartAcademy.repositories.UsuarioRepository;
+import main.java.com.example.SmartAcademy.Interfaces.UsuarioRepository;
 import com.example.SmartAcademy.repositories.jpa.UsuarioJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

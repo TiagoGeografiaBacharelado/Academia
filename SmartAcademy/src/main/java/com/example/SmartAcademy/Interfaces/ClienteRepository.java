@@ -1,4 +1,4 @@
-package main.java.com.example.SmartAcademy.repositories;
+package main.java.com.example.SmartAcademy.Interfaces;
 
 import com.example.SmartAcademy.models.ClienteModels;
 import java.util.List;
