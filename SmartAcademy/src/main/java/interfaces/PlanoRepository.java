@@ -1,12 +1,12 @@
-package com.example.SmartAcademy.repositories;
+package interfaces;
 
 import com.example.SmartAcademy.models.PlanoModels;
 import java.util.List;
 
 public interface PlanoRepository {
-    PlanoModels buscarPorCodigo(Long id);
+    PlanoModels buscarPorCodigo(int id);
     List<PlanoModels> buscar();
     void adicionar(PlanoModels plano);
-    void remover(Long id);
+    void remover(int id);
     void atualizar(PlanoModels plano);
 }

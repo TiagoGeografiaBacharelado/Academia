@@ -1,46 +1,45 @@
 package com.example.SmartAcademy.controller;
 
 
-import com.example.SmartAcademy.repositories.PlanoRepository;
+import interfaces.PlanoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/planos")
-public class PlanoController {
+@RequestMapping("/instrutores")
+public class InstrutorController {
 
-    private final PlanoRepository planoRepository;
+    private final InstrutorApplication instrutorApplication;
 
     @Autowired
-    public PlanoController(PlanoRepository planoRepository) {
-        this.planoRepository = planoRepository;
+    public InstrutorController(InstrutorApplication instrutorApplication) {
+        this.instrutorApplication = instrutorApplication;
     }
 
-    @GetMapping("")
-    public List<Plano> getAll() {
-        return planoRepository.findAll();
+    @PostMapping
+    public void adicionar(@RequestBody InstrutorModels instrutor) {
+        instrutorApplication.adicionar(instrutor);
     }
 
-    @GetMapping("/{id}")
-    public Plano getById(@PathVariable Long id) {
-        return planoRepository.findById(id).orElse(null);
+    @PutMapping
+    public void atualizar(@RequestBody InstrutorModels instrutor) {
+        instrutorApplication.atualizar(instrutor);
     }
 
-    @PostMapping("")
-    public Plano save(@RequestBody Plano plano) {
-        return planoRepository.save(plano);
+    @DeleteMapping("/{codigo}")
+    public void remover(@PathVariable int codigo) {
+        instrutorApplication.remover(codigo);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        planoRepository.deleteById(id);
+    @GetMapping
+    public List<InstrutorModels> buscar() {
+        return instrutorApplication.buscar();
     }
 
-    @PutMapping("/{id}")
-    public Plano update(@PathVariable Long id, @RequestBody Plano plano) {
-        plano.setId(id);
-        return planoRepository.save(plano);
+    @GetMapping("/{codigo}")
+    public InstrutorModels buscarPorCodigo(@PathVariable int codigo) {
+        return instrutorApplication.buscarPorCodigo(codigo);
     }
-}
+}v
