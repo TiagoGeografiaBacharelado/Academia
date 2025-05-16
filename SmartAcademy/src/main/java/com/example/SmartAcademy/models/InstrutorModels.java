@@ -1,4 +1,4 @@
-package com.geriaTeam.geriatricare.models;
+package com.example.SmartAcademy.models;
 
 import jakarta.persistence.*;
 import lombok.*;

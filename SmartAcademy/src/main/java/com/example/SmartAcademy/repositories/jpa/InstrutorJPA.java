@@ -1,6 +1,6 @@
-package com.geriaTeam.geriatricare.repositories.jpa;
+package com.example.SmartAcademy.repositories.jpa;
 
-import com.geriaTeam.geriatricare.models.InstrutorModels;
+import com.example.SmartAcademy.models.InstrutorModels;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

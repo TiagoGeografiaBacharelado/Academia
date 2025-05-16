@@ -1,9 +1,7 @@
-package com.geriaTeam.geriatricare.controllers;
+package com.example.SmartAcademy.controller;
 
-import com.geriaTeam.geriatricare.applications.InstrutorTurmaApplication;
-import com.geriaTeam.geriatricare.models.InstrutorTurmaModels;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.example.SmartAcademy.applications.InstrutorTurmaApplication;
+import com.example.SmartAcademy.models.InstrutorTurmaModels;
 
 import java.util.List;
 

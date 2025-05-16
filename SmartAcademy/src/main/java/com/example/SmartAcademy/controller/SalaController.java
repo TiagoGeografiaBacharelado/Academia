@@ -1,9 +1,7 @@
-package com.geriaTeam.geriatricare.controllers;
+package com.example.SmartAcademy.controller;
 
-import com.geriaTeam.geriatricare.applications.SalaApplication;
-import com.geriaTeam.geriatricare.models.SalaModels;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.example.SmartAcademy.applications.SalaApplication;
+import com.example.SmartAcademy.models.SalaModels;
 
 import java.util.List;
 

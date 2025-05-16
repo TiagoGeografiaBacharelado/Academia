@@ -1,12 +1,12 @@
-package com.geriaTeam.geriatricare.facade;
+package com.example.SmartAcademy.facade;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.geriaTeam.geriatricare.applications.InstrutorTurmaApplication;
-import com.geriaTeam.geriatricare.models.InstrutorTurmaModels;
+import com.example.SmartAcademy.applications.InstrutorTurmaApplication;
+import com.example.SmartAcademy.models.InstrutorTurmaModels;
 import lombok.AllArgsConstructor;
 
 @Component

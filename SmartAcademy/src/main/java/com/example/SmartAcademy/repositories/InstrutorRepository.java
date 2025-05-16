@@ -1,6 +1,6 @@
-package com.geriaTeam.geriatricare.interfaces;
+package com.example.SmartAcademy.repositories;
 
-import com.geriaTeam.geriatricare.models.InstrutorModels;
+import com.example.SmartAcademy.models.InstrutorModels;
 import java.util.List;
 
 public interface InstrutorRepository {

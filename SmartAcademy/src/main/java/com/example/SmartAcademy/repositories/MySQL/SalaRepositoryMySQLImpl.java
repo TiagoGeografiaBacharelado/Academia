@@ -1,4 +1,4 @@
-package com.geriaTeam.geriatricare.repositories.mySQL;
+package com.example.SmartAcademy.repositories.MySQL;
 
 import com.geriaTeam.geriatricare.interfaces.SalaRepository;
 import com.geriaTeam.geriatricare.models.SalaModels;

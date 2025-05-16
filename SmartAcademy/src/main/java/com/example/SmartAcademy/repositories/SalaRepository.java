@@ -1,6 +1,6 @@
-package com.geriaTeam.geriatricare.interfaces;
+package com.example.SmartAcademy.repositories;
 
-import com.geriaTeam.geriatricare.models.SalaModels;
+import com.example.SmartAcademy.models.SalaModels;
 
 import java.util.List;
 

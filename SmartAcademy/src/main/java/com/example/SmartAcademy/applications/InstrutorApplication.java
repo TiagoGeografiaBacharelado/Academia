@@ -1,7 +1,7 @@
-package com.geriaTeam.geriatricare.applications;
+package com.example.SmartAcademy.applications;
 
-import com.geriaTeam.geriatricare.interfaces.InstrutorRepository;
-import com.geriaTeam.geriatricare.models.InstrutorModels;
+import com.example.SmartAcademy.repositories.InstrutorRepository;
+import com.example.SmartAcademy.models.InstrutorModels;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
