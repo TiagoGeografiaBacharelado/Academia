@@ -1,4 +1,4 @@
-package com.example.SmartAcademy.facade;
+package com.example.SmartAcademy.facades;
 
 public class AtividadeInstrutorFacade {
 }
