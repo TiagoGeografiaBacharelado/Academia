@@ -1,8 +1,8 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
-import com.geriaTeam.geriatricare.interfaces.SalaRepository;
-import com.geriaTeam.geriatricare.models.SalaModels;
-import com.geriaTeam.geriatricare.repositories.jpa.SalaJPA;
+import com.example.SmartAcademy.models.SalaModels;
+import com.example.SmartAcademy.repositories.SalaRepository;
+import com.example.SmartAcademy.repositories.jpa.SalaJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

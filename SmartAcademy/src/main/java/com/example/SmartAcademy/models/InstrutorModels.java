@@ -30,7 +30,4 @@ public class InstrutorModels {
 
     @Column(name = "telefone")
     private String telefone;
-
-    @Column(name = "dataNascimento")
-    private String dataNascimento;
 }

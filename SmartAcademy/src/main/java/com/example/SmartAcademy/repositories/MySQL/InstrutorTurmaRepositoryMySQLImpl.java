@@ -1,8 +1,8 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
-import com.geriaTeam.geriatricare.interfaces.InstrutorTurmaRepository;
-import com.geriaTeam.geriatricare.models.InstrutorTurmaModels;
-import com.geriaTeam.geriatricare.repositories.jpa.InstrutorTurmaJPA;
+import com.example.SmartAcademy.models.InstrutorTurmaModels;
+import com.example.SmartAcademy.repositories.InstrutorTurmaRepository;
+import com.example.SmartAcademy.repositories.jpa.InstrutorTurmaJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,12 +34,12 @@ public class InstrutorTurmaRepositoryMySQLImpl implements InstrutorTurmaReposito
     }
 
     @Override
-    public void remover(int codigo) {
-        jpa.deleteById(codigo);
+    public void atualizar(InstrutorTurmaModels instrutorTurma) {
+        jpa.save(instrutorTurma);
     }
 
     @Override
-    public void atualizar(InstrutorTurmaModels instrutorTurma) {
-        jpa.save(instrutorTurma);
+    public void remover(int codigo) {
+        jpa.deleteById(codigo);
     }
 }

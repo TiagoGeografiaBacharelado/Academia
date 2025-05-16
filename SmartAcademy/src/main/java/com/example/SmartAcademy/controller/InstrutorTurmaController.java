@@ -2,6 +2,8 @@ package com.example.SmartAcademy.controller;
 
 import com.example.SmartAcademy.applications.InstrutorTurmaApplication;
 import com.example.SmartAcademy.models.InstrutorTurmaModels;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

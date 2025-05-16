@@ -1,8 +1,8 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
-import com.geriaTeam.geriatricare.interfaces.TurmaRepository;
-import com.geriaTeam.geriatricare.models.TurmaModels;
-import com.geriaTeam.geriatricare.repositories.jpa.TurmaJPA;
+import com.example.SmartAcademy.models.TurmaModels;
+import com.example.SmartAcademy.repositories.TurmaRepository;
+import com.example.SmartAcademy.repositories.jpa.TurmaJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
