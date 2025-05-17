@@ -1,4 +1,4 @@
-package com.example.SmartAcademy.controller;
+package com.example.SmartAcademy.controllers;
 
 public class AtividadeInstrutorController {
 }
