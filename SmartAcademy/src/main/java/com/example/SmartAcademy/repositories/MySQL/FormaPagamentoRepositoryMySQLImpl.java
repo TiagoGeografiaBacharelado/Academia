@@ -1,7 +1,7 @@
 package com.example.SmartAcademy.repositories.mysql;
 
 import com.example.SmartAcademy.models.FormaPagamentoModels;
-import main.java.com.example.SmartAcademy.Interfaces.FormaPagamentoRepository;
+import com.example.SmartAcademy.Interfaces.FormaPagamentoRepository;
 import com.example.SmartAcademy.repositories.jpa.FormaPagamentoJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,7 @@
 package com.example.SmartAcademy.repositories.mysql;
 
 import com.example.SmartAcademy.models.ClientePlanoModels;
-import main.java.com.example.SmartAcademy.Interfaces.ClientePlanoRepository;
+import com.example.SmartAcademy.Interfaces.ClientePlanoRepository;
 import com.example.SmartAcademy.repositories.jpa.ClientePlanoJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
