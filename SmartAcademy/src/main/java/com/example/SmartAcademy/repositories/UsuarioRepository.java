@@ -1,6 +1,7 @@
-package com.example.SmartAcademy.Interfaces;
+package com.example.SmartAcademy.repositories;
 
 import com.example.SmartAcademy.models.UsuarioModels;
+
 import java.util.List;
 import java.util.Optional;
 

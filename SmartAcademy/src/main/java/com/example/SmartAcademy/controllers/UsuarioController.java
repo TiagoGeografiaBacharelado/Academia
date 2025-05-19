@@ -1,7 +1,7 @@
 package com.example.SmartAcademy.controllers;
 
 import com.example.SmartAcademy.models.UsuarioModels;
-import com.example.SmartAcademy.interfaces.UsuarioRepository;
+import com.example.SmartAcademy.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
