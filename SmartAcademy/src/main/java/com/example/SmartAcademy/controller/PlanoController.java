@@ -1,45 +1,44 @@
 package com.example.SmartAcademy.controller;
 
-
-import interfaces.PlanoRepository;
+import com.example.SmartAcademy.applications.PlanoApplication;
+import com.example.SmartAcademy.models.PlanoModels;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/instrutores")
-public class InstrutorController {
+@RequestMapping("/planos")
+public class PlanoController {
 
-    private final InstrutorApplication instrutorApplication;
+    private final PlanoApplication planoApplication;
 
     @Autowired
-    public InstrutorController(InstrutorApplication instrutorApplication) {
-        this.instrutorApplication = instrutorApplication;
+    public PlanoController(PlanoApplication planoApplication) {
+        this.planoApplication = planoApplication;
     }
 
     @PostMapping
-    public void adicionar(@RequestBody InstrutorModels instrutor) {
-        instrutorApplication.adicionar(instrutor);
+    public void adicionar(@RequestBody PlanoModels plano) {
+        planoApplication.adicionar(plano);
     }
 
     @PutMapping
-    public void atualizar(@RequestBody InstrutorModels instrutor) {
-        instrutorApplication.atualizar(instrutor);
+    public void atualizar(@RequestBody PlanoModels plano) {
+        planoApplication.atualizar(plano);
     }
 
     @DeleteMapping("/{codigo}")
     public void remover(@PathVariable int codigo) {
-        instrutorApplication.remover(codigo);
+        planoApplication.remover(codigo);
     }
 
     @GetMapping
-    public List<InstrutorModels> buscar() {
-        return instrutorApplication.buscar();
+    public List<PlanoModels> buscar() {
+        return planoApplication.buscar();
     }
 
     @GetMapping("/{codigo}")
-    public InstrutorModels buscarPorCodigo(@PathVariable int codigo) {
-        return instrutorApplication.buscarPorCodigo(codigo);
+    public PlanoModels buscarPorCodigo(@PathVariable int codigo) {
+        return planoApplication.buscarPorCodigo(codigo);
     }
-}v
+}

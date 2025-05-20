@@ -1,9 +1,10 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
+import com.example.SmartAcademy.interfaces.PlanoRepository;
 import com.example.SmartAcademy.models.PlanoModels;
 import com.example.SmartAcademy.repositories.jpa.PlanoJPA;
-import interfaces.PlanoRepository;
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 

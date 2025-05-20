@@ -1,4 +1,5 @@
-package interfaces;
+package com.example.SmartAcademy.interfaces;
+
 
 import com.example.SmartAcademy.models.AtividadeInstrutorModels;
 
