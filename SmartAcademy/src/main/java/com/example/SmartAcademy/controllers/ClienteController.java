@@ -1,69 +1,58 @@
-package com.example.SmartAcademy.controllers;
+package com.example.SmartAcademy.controllers; // Pacote de controllers
 
-import com.example.SmartAcademy.models.ClienteModels;
-import com.example.SmartAcademy.repositories.ClienteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import com.example.SmartAcademy.models.ClienteModel; // DTO para transporte
+import com.example.SmartAcademy.services.ClienteService; // Serviço de negócio
+import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
+import org.springframework.http.ResponseEntity; // Respostas HTTP
+import org.springframework.web.bind.annotation.*; // Anotações REST
 
-import java.util.List;
-import java.util.Optional;
+import java.net.URI; // Para header Location
+import java.util.List; // Listagem
+import java.util.Optional; // Optional
 
-@RestController
-@RequestMapping("/api/clientes")
-public class ClienteController {
+@RestController // Define controller REST
+@RequestMapping("/api/clientes") // Mapeia rota base
+public class ClienteController { // Classe de controller
 
-    private final ClienteRepository clienteRepository;
+    private final ClienteService clienteService; // Dependência do serviço
 
-    @Autowired
-    public ClienteController(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
+    @Autowired // Injeta via construtor
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService; // Atribuição
     }
 
-    // GET /api/clientes
-    @GetMapping
-    public ResponseEntity<List<ClienteModels>> listarTodos() {
-        List<ClienteModels> clientes = clienteRepository.buscarTodos();
-        return ResponseEntity.ok(clientes);
+    @GetMapping // GET /api/clientes
+    public ResponseEntity<List<ClienteModel>> listarTodos() {
+        List<ClienteModel> lista = clienteService.listarTodos(); // Busca lista
+        return ResponseEntity.ok(lista); // HTTP 200 com corpo
     }
 
-    // GET /api/clientes/{id}
-    @GetMapping("/{id}")
-    public ResponseEntity<ClienteModels> buscarPorId(@PathVariable Integer id) {
-        Optional<ClienteModels> optional = clienteRepository.buscarPorCodigo(id);
+    @GetMapping("/{id}") // GET /api/clientes/{id}
+    public ResponseEntity<ClienteModel> buscarPorId(@PathVariable Long id) {
+        Optional<ClienteModel> optional = clienteService.buscarPorId(id); // Busca por ID
         return optional
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok) // Se presente, 200 OK
+                .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
     }
 
-    // POST /api/clientes
-    @PostMapping
-    public ResponseEntity<ClienteModels> criar(@RequestBody ClienteModels cliente) {
-        clienteRepository.adicionar(cliente);
-        return ResponseEntity.ok(cliente);
+    @PostMapping // POST /api/clientes
+    public ResponseEntity<ClienteModel> criar(@RequestBody ClienteModel clienteModel) {
+        ClienteModel criado = clienteService.criar(clienteModel); // Cria cliente
+        URI location = URI.create("/api/clientes/" + criado.getId()); // URI do recurso
+        return ResponseEntity.created(location).body(criado); // HTTP 201 Created
     }
 
-    // PUT /api/clientes/{id}
-    @PutMapping("/{id}")
-    public ResponseEntity<ClienteModels> atualizar(@PathVariable Integer id,
-                                                   @RequestBody ClienteModels cliente) {
-        Optional<ClienteModels> existente = clienteRepository.buscarPorCodigo(id);
-        if (existente.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        cliente.setId(id);  // certificar que id está sincronizado
-        clienteRepository.atualizar(cliente);
-        return ResponseEntity.ok(cliente);
+    @PutMapping("/{id}") // PUT /api/clientes/{id}
+    public ResponseEntity<ClienteModel> atualizar(@PathVariable Long id,
+                                                  @RequestBody ClienteModel clienteModel) {
+        ClienteModel atualizado = clienteService.atualizar(id, clienteModel); // Atualiza
+        return ResponseEntity.ok(atualizado); // HTTP 200 OK
     }
 
-    // DELETE /api/clientes/{id}
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-        Optional<ClienteModels> existente = clienteRepository.buscarPorCodigo(id);
-        if (existente.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        clienteRepository.remover(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/{id}") // DELETE /api/clientes/{id}
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        clienteService.deletar(id); // Deleta recurso
+        return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }
+
 }

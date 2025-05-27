@@ -1,14 +1,14 @@
-package com.example.SmartAcademy.Interfaces;
+package com.example.SmartAcademy.interfaces; // Define pacote de interfaces
 
-import com.example.SmartAcademy.models.ClienteModels;
-import java.util.List;
-import java.util.Optional;
+import com.example.SmartAcademy.models.ClienteModel; // Importa modelo de DTO
+import java.util.List; // Importa List genérica
+import java.util.Optional; // Importa Optional para resultados opcionais
 
-public interface ClienteRepository {
-    Optional<ClienteModels> buscarPorCodigo(Integer id);
-    List<ClienteModels> buscarTodos();
-    void adicionar(ClienteModels cliente);
-    void remover(Integer id);
-    void atualizar(ClienteModels cliente);
-    Optional<ClienteModels> buscarPorCpf(String cpf);
+public interface ClienteRepository { // Define interface ClienteRepository
+    Optional<ClienteModel> buscarPorCodigo(Long id); // Método para buscar por ID
+    List<ClienteModel> buscarTodos(); // Método para listar todos
+    void adicionar(ClienteModel clienteModel); // Método para adicionar novo
+    void atualizar(ClienteModel clienteModel); // Método para atualizar existente
+    void remover(Long id); // Método para remover por ID
+    Optional<ClienteModel> buscarPorCpf(String cpf); // Método para buscar por CPF
 }
