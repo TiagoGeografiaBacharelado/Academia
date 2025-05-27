@@ -1,24 +1,14 @@
 package com.example.SmartAcademy.models;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Setter
-@Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "sala")
-public class SalaModels {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_sala")
-    private int id;
-
-    @Column(name = "nome")
+@AllArgsConstructor
+public class SalaModel {
+    private Long id;
     private String nome;
-
-    @Column(name = "capacidade")
-    private int capacidade;
+    private String descricao;
+    private Integer capacidade;
 }

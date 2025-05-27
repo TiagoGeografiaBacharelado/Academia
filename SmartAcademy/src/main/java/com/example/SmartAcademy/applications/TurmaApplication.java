@@ -1,39 +1,49 @@
 package com.example.SmartAcademy.applications;
 
-import com.example.SmartAcademy.repositories.TurmaRepository;
-import com.example.SmartAcademy.models.TurmaModels;
+import com.example.SmartAcademy.models.TurmaModel;
+import com.example.SmartAcademy.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Service
+@RestController
+@RequestMapping("/api/turmas/app")
 public class TurmaApplication {
 
-    private final TurmaRepository turmaRepository;
+    private final TurmaService turmaService;
 
     @Autowired
-    public TurmaApplication(TurmaRepository turmaRepository) {
-        this.turmaRepository = turmaRepository;
+    public TurmaApplication(TurmaService turmaService) {
+        this.turmaService = turmaService;
     }
 
-    public void adicionar(TurmaModels turma) {
-        turmaRepository.adicionar(turma);
+    @GetMapping
+    public ResponseEntity<List<TurmaModel>> listarTodas() {
+        return ResponseEntity.ok(turmaService.listarTodas());
     }
 
-    public void atualizar(TurmaModels turma) {
-        turmaRepository.atualizar(turma);
+    @GetMapping("/{id}")
+    public ResponseEntity<TurmaModel> buscarPorId(@PathVariable Long id) {
+        return turmaService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public void remover(int codigo) {
-        turmaRepository.remover(codigo);
+    @PostMapping
+    public ResponseEntity<TurmaModel> criar(@RequestBody TurmaModel turmaModel) {
+        return ResponseEntity.ok(turmaService.criar(turmaModel));
     }
 
-    public List<TurmaModels> buscar() {
-        return turmaRepository.buscar();
+    @PutMapping("/{id}")
+    public ResponseEntity<TurmaModel> atualizar(@PathVariable Long id, @RequestBody TurmaModel turmaModel) {
+        return ResponseEntity.ok(turmaService.atualizar(id, turmaModel));
     }
 
-    public TurmaModels buscarPorCodigo(int codigo) {
-        return turmaRepository.buscarPorCodigo(codigo);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        turmaService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

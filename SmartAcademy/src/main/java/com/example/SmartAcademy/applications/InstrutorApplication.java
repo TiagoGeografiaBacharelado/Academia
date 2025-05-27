@@ -1,39 +1,49 @@
 package com.example.SmartAcademy.applications;
 
-import com.example.SmartAcademy.repositories.InstrutorRepository;
-import com.example.SmartAcademy.models.InstrutorModels;
+import com.example.SmartAcademy.models.InstrutorModel;
+import com.example.SmartAcademy.services.InstrutorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Service
+@RestController
+@RequestMapping("/api/instrutores/app")
 public class InstrutorApplication {
 
-    private final InstrutorRepository instrutorRepository;
+    private final InstrutorService instrutorService;
 
     @Autowired
-    public InstrutorApplication(InstrutorRepository instrutorRepository) {
-        this.instrutorRepository = instrutorRepository;
+    public InstrutorApplication(InstrutorService instrutorService) {
+        this.instrutorService = instrutorService;
     }
 
-    public void adicionar(InstrutorModels instrutor) {
-        instrutorRepository.adicionar(instrutor);
+    @GetMapping
+    public ResponseEntity<List<InstrutorModel>> listarTodos() {
+        return ResponseEntity.ok(instrutorService.listarTodos());
     }
 
-    public void atualizar(InstrutorModels instrutor) {
-        instrutorRepository.atualizar(instrutor);
+    @GetMapping("/{id}")
+    public ResponseEntity<InstrutorModel> buscarPorId(@PathVariable Long id) {
+        return instrutorService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public void remover(int codigo) {
-        instrutorRepository.remover(codigo);
+    @PostMapping
+    public ResponseEntity<InstrutorModel> criar(@RequestBody InstrutorModel instrutorModel) {
+        return ResponseEntity.ok(instrutorService.criar(instrutorModel));
     }
 
-    public List<InstrutorModels> buscar() {
-        return instrutorRepository.buscar();
+    @PutMapping("/{id}")
+    public ResponseEntity<InstrutorModel> atualizar(@PathVariable Long id, @RequestBody InstrutorModel instrutorModel) {
+        return ResponseEntity.ok(instrutorService.atualizar(id, instrutorModel));
     }
 
-    public InstrutorModels buscarPorCodigo(int codigo) {
-        return instrutorRepository.buscarPorCodigo(codigo);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        instrutorService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

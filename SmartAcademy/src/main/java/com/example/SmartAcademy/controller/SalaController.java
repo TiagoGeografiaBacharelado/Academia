@@ -1,45 +1,55 @@
-package com.example.SmartAcademy.controller;
+package com.example.SmartAcademy.controllers;
 
-import com.example.SmartAcademy.applications.SalaApplication;
-import com.example.SmartAcademy.models.SalaModels;
+import com.example.SmartAcademy.models.SalaModel;
+import com.example.SmartAcademy.services.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/salas")
+@RequestMapping("/api/salas")
 public class SalaController {
 
-    private final SalaApplication salaApplication;
+    private final SalaService salaService;
 
     @Autowired
-    public SalaController(SalaApplication salaApplication) {
-        this.salaApplication = salaApplication;
-    }
-
-    @PostMapping
-    public void adicionar(@RequestBody SalaModels sala) {
-        salaApplication.adicionar(sala);
-    }
-
-    @PutMapping
-    public void atualizar(@RequestBody SalaModels sala) {
-        salaApplication.atualizar(sala);
-    }
-
-    @DeleteMapping("/{codigo}")
-    public void remover(@PathVariable int codigo) {
-        salaApplication.remover(codigo);
+    public SalaController(SalaService salaService) {
+        this.salaService = salaService;
     }
 
     @GetMapping
-    public List<SalaModels> buscar() {
-        return salaApplication.buscar();
+    public ResponseEntity<List<SalaModel>> listarTodas() {
+        return ResponseEntity.ok(salaService.listarTodas());
     }
 
-    @GetMapping("/{codigo}")
-    public SalaModels buscarPorCodigo(@PathVariable int codigo) {
-        return salaApplication.buscarPorCodigo(codigo);
+    @GetMapping("/{id}")
+    public ResponseEntity<SalaModel> buscarPorId(@PathVariable Long id) {
+        Optional<SalaModel> optional = salaService.buscarPorId(id);
+        return optional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<SalaModel> criar(@RequestBody SalaModel salaModel) {
+        SalaModel criado = salaService.criar(salaModel);
+        URI location = URI.create("/api/salas/" + criado.getId());
+        return ResponseEntity.created(location).body(criado);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SalaModel> atualizar(@PathVariable Long id,
+                                               @RequestBody SalaModel salaModel) {
+        SalaModel atualizado = salaService.atualizar(id, salaModel);
+        return ResponseEntity.ok(atualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        salaService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

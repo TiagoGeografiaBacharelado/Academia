@@ -1,45 +1,55 @@
-package com.example.SmartAcademy.controller;
+package com.example.SmartAcademy.controllers;
 
-import com.example.SmartAcademy.applications.TurmaApplication;
-import com.example.SmartAcademy.models.TurmaModels;
+import com.example.SmartAcademy.models.TurmaModel;
+import com.example.SmartAcademy.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/turmas")
+@RequestMapping("/api/turmas")
 public class TurmaController {
 
-    private final TurmaApplication turmaApplication;
+    private final TurmaService turmaService;
 
     @Autowired
-    public TurmaController(TurmaApplication turmaApplication) {
-        this.turmaApplication = turmaApplication;
-    }
-
-    @PostMapping
-    public void adicionar(@RequestBody TurmaModels turma) {
-        turmaApplication.adicionar(turma);
-    }
-
-    @PutMapping
-    public void atualizar(@RequestBody TurmaModels turma) {
-        turmaApplication.atualizar(turma);
-    }
-
-    @DeleteMapping("/{codigo}")
-    public void remover(@PathVariable int codigo) {
-        turmaApplication.remover(codigo);
+    public TurmaController(TurmaService turmaService) {
+        this.turmaService = turmaService;
     }
 
     @GetMapping
-    public List<TurmaModels> buscar() {
-        return turmaApplication.buscar();
+    public ResponseEntity<List<TurmaModel>> listarTodas() {
+        return ResponseEntity.ok(turmaService.listarTodas());
     }
 
-    @GetMapping("/{codigo}")
-    public TurmaModels buscarPorCodigo(@PathVariable int codigo) {
-        return turmaApplication.buscarPorCodigo(codigo);
+    @GetMapping("/{id}")
+    public ResponseEntity<TurmaModel> buscarPorId(@PathVariable Long id) {
+        Optional<TurmaModel> optional = turmaService.buscarPorId(id);
+        return optional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<TurmaModel> criar(@RequestBody TurmaModel turmaModel) {
+        TurmaModel criado = turmaService.criar(turmaModel);
+        URI location = URI.create("/api/turmas/" + criado.getId());
+        return ResponseEntity.created(location).body(criado);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TurmaModel> atualizar(@PathVariable Long id,
+                                                @RequestBody TurmaModel turmaModel) {
+        TurmaModel atualizado = turmaService.atualizar(id, turmaModel);
+        return ResponseEntity.ok(atualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        turmaService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

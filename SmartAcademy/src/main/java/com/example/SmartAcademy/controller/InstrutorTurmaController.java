@@ -1,45 +1,57 @@
-package com.example.SmartAcademy.controller;
+package com.example.SmartAcademy.controllers;
 
-import com.example.SmartAcademy.applications.InstrutorTurmaApplication;
-import com.example.SmartAcademy.models.InstrutorTurmaModels;
+import com.example.SmartAcademy.models.InstrutorTurmaModel;
+import com.example.SmartAcademy.services.InstrutorTurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/instrutores-turmas")
+@RequestMapping("/api/instrutorturmas")
 public class InstrutorTurmaController {
 
-    private final InstrutorTurmaApplication instrutorTurmaApplication;
+    private final InstrutorTurmaService instrutorTurmaService;
 
     @Autowired
-    public InstrutorTurmaController(InstrutorTurmaApplication instrutorTurmaApplication) {
-        this.instrutorTurmaApplication = instrutorTurmaApplication;
-    }
-
-    @PostMapping
-    public void adicionar(@RequestBody InstrutorTurmaModels instrutorTurma) {
-        instrutorTurmaApplication.adicionar(instrutorTurma);
-    }
-
-    @PutMapping
-    public void atualizar(@RequestBody InstrutorTurmaModels instrutorTurma) {
-        instrutorTurmaApplication.atualizar(instrutorTurma);
-    }
-
-    @DeleteMapping("/{codigo}")
-    public void remover(@PathVariable int codigo) {
-        instrutorTurmaApplication.remover(codigo);
+    public InstrutorTurmaController(InstrutorTurmaService instrutorTurmaService) {
+        this.instrutorTurmaService = instrutorTurmaService;
     }
 
     @GetMapping
-    public List<InstrutorTurmaModels> buscar() {
-        return instrutorTurmaApplication.buscar();
+    public ResponseEntity<List<InstrutorTurmaModel>> listarTodas() {
+        return ResponseEntity.ok(instrutorTurmaService.listarTodas());
     }
 
-    @GetMapping("/{codigo}")
-    public InstrutorTurmaModels buscarPorCodigo(@PathVariable int codigo) {
-        return instrutorTurmaApplication.buscarPorCodigo(codigo);
+    @GetMapping("/{idInstrutor}/{idTurma}")
+    public ResponseEntity<InstrutorTurmaModel> buscarPorIds(@PathVariable Long idInstrutor,
+                                                            @PathVariable Long idTurma) {
+        Optional<InstrutorTurmaModel> optional = instrutorTurmaService.buscarPorIds(idInstrutor, idTurma);
+        return optional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<InstrutorTurmaModel> criar(@RequestBody InstrutorTurmaModel model) {
+        InstrutorTurmaModel criado = instrutorTurmaService.criar(model);
+        URI location = URI.create("/api/instrutorturmas/" + criado.getInstrutorId() + "/" + criado.getTurmaId());
+        return ResponseEntity.created(location).body(criado);
+    }
+
+    @PutMapping("/{idInstrutor}/{idTurma}")
+    public ResponseEntity<InstrutorTurmaModel> atualizar(@PathVariable Long idInstrutor,
+                                                         @PathVariable Long idTurma,
+                                                         @RequestBody InstrutorTurmaModel model) {
+        InstrutorTurmaModel atualizado = instrutorTurmaService.atualizar(idInstrutor, idTurma, model);
+        return ResponseEntity.ok(atualizado);
+    }
+
+    @DeleteMapping("/{idInstrutor}/{idTurma}")
+    public ResponseEntity<Void> deletar(@PathVariable Long idInstrutor, @PathVariable Long idTurma) {
+        instrutorTurmaService.deletar(idInstrutor, idTurma);
+        return ResponseEntity.noContent().build();
     }
 }
