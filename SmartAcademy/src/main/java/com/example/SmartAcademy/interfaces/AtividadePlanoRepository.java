@@ -5,7 +5,7 @@ import com.example.SmartAcademy.models.AtividadePlanoModels;
 
 import java.util.List;
 
-public interface AtividadePLanoRepository {
+public interface AtividadePlanoRepository {
     AtividadePlanoModels buscarPorCodigo(int id);
     List<AtividadePlanoModels> buscar();
     void adicionar(AtividadePlanoModels atividadePlanoModels);
