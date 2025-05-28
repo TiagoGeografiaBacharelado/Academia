@@ -15,3 +15,4 @@ public class ClientePlanoModel {
     private Long idFormaPagamento;
     private LocalDate dataValidade;
     private String statusPagamento;
+}
