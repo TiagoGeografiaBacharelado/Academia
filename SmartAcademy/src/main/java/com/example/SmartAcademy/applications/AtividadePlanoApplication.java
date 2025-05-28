@@ -1,6 +1,6 @@
 package com.example.SmartAcademy.applications;
 
-import com.example.SmartAcademy.models.AtividadePlanoModels;
+import com.example.SmartAcademy.models.AtividadePlanoModel;
 import com.example.SmartAcademy.interfaces.AtividadePlanoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ public class AtividadePlanoApplication {
         this.atividadePlanoRepository = atividadePlanoRepository;
     }
 
-    public void adicionar(AtividadePlanoModels atividadePlano) {
+    public void adicionar(AtividadePlanoModel atividadePlano) {
         atividadePlanoRepository.save(atividadePlano);
     }
 
-    public void atualizar(AtividadePlanoModels atividadePlano) {
+    public void atualizar(AtividadePlanoModel atividadePlano) {
         atividadePlanoRepository.save(atividadePlano);
     }
 
@@ -29,11 +29,11 @@ public class AtividadePlanoApplication {
         atividadePlanoRepository.deleteById(codigo);
     }
 
-    public List<AtividadePlanoModels> buscar() {
+    public List<AtividadePlanoModel> buscar() {
         return atividadePlanoRepository.findAll();
     }
 
-    public AtividadePlanoModels buscarPorCodigo(int codigo) {
+    public AtividadePlanoModel buscarPorCodigo(int codigo) {
         return atividadePlanoRepository.findById(codigo).orElse(null);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
 import com.example.SmartAcademy.interfaces.PlanoRepository;
-import com.example.SmartAcademy.models.PlanoModels;
+import com.example.SmartAcademy.models.PlanoModel;
 import com.example.SmartAcademy.repositories.jpa.PlanoJPA;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class PlanoMySQLImpl implements PlanoRepository {
     }
 
     @Override
-    public void adicionar(PlanoModels plano) {
+    public void adicionar(PlanoModel plano) {
         try {
             planoJPA.save(plano);
         } catch (Exception e) {
@@ -29,7 +29,7 @@ public class PlanoMySQLImpl implements PlanoRepository {
     }
 
     @Override
-    public void atualizar(PlanoModels plano) {
+    public void atualizar(PlanoModel plano) {
         try {
             planoJPA.save(plano);
         } catch (Exception e) {
@@ -51,17 +51,17 @@ public class PlanoMySQLImpl implements PlanoRepository {
     }
 
     @Override
-    public List<PlanoModels> buscar() {
+    public List<PlanoModel> buscar() {
         return planoJPA.findAll();
     }
 
     @Override
-    public PlanoModels buscarPorCodigo(int codigo) {
+    public PlanoModel buscarPorCodigo(int codigo) {
         return planoJPA.findById(codigo).orElse(null);
     }
 
     @Override
-    public List<PlanoModels> buscarPorNome(String nome) {
+    public List<PlanoModel> buscarPorNome(String nome) {
         try {
             return planoJPA.findByNome(nome);
         } catch (Exception e) {

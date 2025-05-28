@@ -1,44 +1,58 @@
-package com.example.SmartAcademy.controller;
+package com.example.SmartAcademy.controllers; // Pacote de controllers
 
-import com.example.SmartAcademy.applications.PlanoApplication;
-import com.example.SmartAcademy.models.PlanoModels;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import com.example.SmartAcademy.models.PlanoModel; // DTO para transporte
+import com.example.SmartAcademy.services.PlanoService; // Serviço de negócio
+import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
+import org.springframework.http.ResponseEntity; // Respostas HTTP
+import org.springframework.web.bind.annotation.*; // Anotações REST
 
-@RestController
-@RequestMapping("/planos")
-public class PlanoController {
+import java.net.URI; // Para header Location
+import java.util.List; // Listagem
+import java.util.Optional; // Optional
 
-    private final PlanoApplication planoApplication;
+@RestController // Define controller REST
+@RequestMapping("/api/planos") // Mapeia rota base
+public class PlanoController { // Classe de controller
 
-    @Autowired
-    public PlanoController(PlanoApplication planoApplication) {
-        this.planoApplication = planoApplication;
+    private final PlanoService planoService; // Dependência do serviço
+
+    @Autowired // Injeta via construtor
+    public PlanoController(PlanoService planoService) {
+        this.planoService = planoService; // Atribuição
     }
 
-    @PostMapping
-    public void adicionar(@RequestBody PlanoModels plano) {
-        planoApplication.adicionar(plano);
+    @GetMapping // GET /api/clientes
+    public ResponseEntity<List<PlanoModel>> listarTodos() {
+        List<PlanoModel> lista = planoService.listarTodos(); // Busca lista
+        return ResponseEntity.ok(lista); // HTTP 200 com corpo
     }
 
-    @PutMapping
-    public void atualizar(@RequestBody PlanoModels plano) {
-        planoApplication.atualizar(plano);
+    @GetMapping("/{id}") // GET /api/clientes/{id}
+    public ResponseEntity<PlanoModel> buscarPorId(@PathVariable Long id) {
+        Optional<PlanoModel> optional = planoService.buscarPorId(id); // Busca por ID
+        return optional
+                .map(ResponseEntity::ok) // Se presente, 200 OK
+                .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
     }
 
-    @DeleteMapping("/{codigo}")
-    public void remover(@PathVariable int codigo) {
-        planoApplication.remover(codigo);
+    @PostMapping // POST /api/clientes
+    public ResponseEntity<PlanoModel> criar(@RequestBody PlanoModel planoModel) {
+        PlanoModel criado = planoService.criar(planoModel); // Cria cliente
+        URI location = URI.create("/api/planos/" + criado.getId()); // URI do recurso
+        return ResponseEntity.created(location).body(criado); // HTTP 201 Created
     }
 
-    @GetMapping
-    public List<PlanoModels> buscar() {
-        return planoApplication.buscar();
+    @PutMapping("/{id}") // PUT /api/planos/{id}
+    public ResponseEntity<PlanoModel> atualizar(@PathVariable Long id,
+                                                  @RequestBody PlanoModel planoModel) {
+        PlanoModel atualizado = planoService.atualizar(id, planoModel); // Atualiza
+        return ResponseEntity.ok(atualizado); // HTTP 200 OK
     }
 
-    @GetMapping("/{codigo}")
-    public PlanoModels buscarPorCodigo(@PathVariable int codigo) {
-        return planoApplication.buscarPorCodigo(codigo);
+    @DeleteMapping("/{id}") // DELETE /api/clientes/{id}
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        planoService.deletar(id); // Deleta recurso
+        return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }
+
 }

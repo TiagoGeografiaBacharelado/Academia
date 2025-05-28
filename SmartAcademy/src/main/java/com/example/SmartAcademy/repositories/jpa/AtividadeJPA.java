@@ -1,14 +1,14 @@
 package com.example.SmartAcademy.repositories.jpa;
 
-import com.example.SmartAcademy.models.AtividadeModels;
+import com.example.SmartAcademy.models.AtividadeModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AtividadeJPA extends JpaRepository<AtividadeModels, Integer> {
+public interface AtividadeJPA extends JpaRepository<AtividadeModel, Integer> {
 
-    List<AtividadeModels> findByAtividade_nome(String atividade_nome);
-    List<AtividadeModels> findByDuracao(Integer duracao);
-    List<AtividadeModels> findByNomeAtividadeAndDuracao(String nomeAtividade, Integer duracao);
-    List<AtividadeModels> findByInstrutorId(Integer instrutorId);
+    List<AtividadeModel> findByAtividade_nome(String atividade_nome);
+    List<AtividadeModel> findByDuracao(Integer duracao);
+    List<AtividadeModel> findByNomeAtividadeAndDuracao(String nomeAtividade, Integer duracao);
+    List<AtividadeModel> findByInstrutorId(Integer instrutorId);
 }

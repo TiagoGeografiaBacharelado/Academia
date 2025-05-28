@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "atividade_plano")
-public class AtividadePlanoModels {
+public class AtividadePlanoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +21,11 @@ public class AtividadePlanoModels {
 
     @ManyToOne
     @JoinColumn(name = "atividade_id", referencedColumnName = "atividade_id")
-    private AtividadeModels atividade;
+    private AtividadeModel atividade;
 
     @ManyToOne
     @JoinColumn(name = "plano_id", referencedColumnName = "planos_id")
-    private PlanoModels plano;
+    private PlanoModel plano;
 
     @Column(name = "atividade_plano_observacao")
     private String observacao;

@@ -1,39 +1,60 @@
+
 package com.example.SmartAcademy.applications;
 
-import com.example.SmartAcademy.models.PlanoModels;
-import com.example.SmartAcademy.interfaces.PlanoRepository;
+import com.example.SmartAcademy.models.PlanoModel;
+import com.example.SmartAcademy.services.PlanoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Service
+@RestController
+@RequestMapping("/api/planos/app")
 public class PlanoApplication {
 
-    private PlanoRepository planoRepository;
+    private final PlanoService planoService;
 
     @Autowired
-    public void setPlanoRepository(PlanoRepository planoRepository) {
-        this.planoRepository = planoRepository;
+    public PlanoApplication(PlanoService planoService) {
+        this.planoService = planoService;
     }
 
-    public void adicionar(PlanoModels plano) {
-        planoRepository.save(plano);
+    // GET /api/clientes
+    @GetMapping
+    public ResponseEntity<List<PlanoModel>> listarTodos() {
+        List<PlanoModel> planos = planoService.listarTodos();
+        return ResponseEntity.ok(planos);
     }
 
-    public void atualizar(PlanoModels plano) {
-        planoRepository.save(plano);
+    // GET /api/clientes/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<PlanoModel> buscarPorId(@PathVariable Long id) {
+        return planoService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public void remover(int codigo) {
-        planoRepository.deleteById(codigo);
+    // POST /api/clientes
+    @PostMapping
+    public ResponseEntity<PlanoModel> criar(@RequestBody PlanoModel planoModel) {
+        PlanoModel criado = planoService.criar(planoModel);
+        return ResponseEntity.ok(criado);
     }
 
-    public List<PlanoModels> buscar() {
-        return planoRepository.findAll();
+    // PUT /api/clientes/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<PlanoModel> atualizar(@PathVariable Long id,
+                                                @RequestBody PlanoModel planoModel) {
+        PlanoModel atualizado = planoService.atualizar(id, planoModel);
+        return ResponseEntity.ok(atualizado);
     }
 
-    public PlanoModels buscarPorCodigo(int codigo) {
-        return planoRepository.findById(codigo).orElse(null);
+    // DELETE /api/clientes/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        planoService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }
+

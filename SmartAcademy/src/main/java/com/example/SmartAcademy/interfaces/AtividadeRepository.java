@@ -1,14 +1,14 @@
 package com.example.SmartAcademy.interfaces;
 
 
-import com.example.SmartAcademy.models.AtividadeModels;
+import com.example.SmartAcademy.models.AtividadeModel;
 
 import java.util.List;
 
 public interface AtividadeRepository {
-    AtividadeModels buscarPorCodigo(int id);
-    List<AtividadeModels> buscar();
-    void adicionar(AtividadeModels atividadeModels);
+    AtividadeModel buscarPorCodigo(int id);
+    List<AtividadeModel> buscar();
+    void adicionar(AtividadeModel atividadeModel);
     void remover(int id);
-    void atualizar(AtividadeModels atividadeModels);
+    void atualizar(AtividadeModel atividadeModel);
 }
