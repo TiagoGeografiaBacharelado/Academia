@@ -1,7 +1,9 @@
 package com.example.SmartAcademy.repositories.jpa;
 
-import com.example.SmartAcademy.models.SalaModels;
+import com.example.SmartAcademy.entities.Sala;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface SalaJPA extends JpaRepository<SalaModels, Integer> {
+@Repository
+public interface SalaJPA extends JpaRepository<Sala, Long> {
 }
