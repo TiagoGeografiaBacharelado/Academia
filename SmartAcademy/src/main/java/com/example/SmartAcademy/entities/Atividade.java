@@ -2,17 +2,15 @@ package com.example.SmartAcademy.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "planos")
+@Table(name = "atividades")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Plano {
-
+public class Atividade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,10 +18,13 @@ public class Plano {
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal preco;
-
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 500)
     private String descricao;
 
+    @Column(name = "duracao_minutos")
+    private int duracaoMinutos;
+
+    @Column(name = "horario", nullable = true)
+    private LocalDateTime horario;
 }
+

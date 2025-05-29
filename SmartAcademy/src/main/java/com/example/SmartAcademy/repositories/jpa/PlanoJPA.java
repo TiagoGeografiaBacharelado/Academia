@@ -1,9 +1,31 @@
 package com.example.SmartAcademy.repositories.jpa;
 
-import com.example.SmartAcademy.models.PlanoModel;
+import com.example.SmartAcademy.entities.Plano;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
-public interface PlanoJPA extends JpaRepository<PlanoModel, Integer> {
-    List<PlanoModel> findByNome(String nome);
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface PlanoJPA extends JpaRepository<Plano, Long> {
+
+    // Busca por nome exato
+    Optional<Plano> findByNome(String nome);
+
+    // Lista planos que contenham parte do nome (ignora maiúsculas/minúsculas)
+    List<Plano> findByNomeContainingIgnoreCase(String nome);
+
+    // Busca planos com preço igual ou menor que o valor informado
+    List<Plano> findByPrecoLessThanEqual(BigDecimal preco);
+
+    // Busca planos com preço igual ou maior que o valor informado
+    List<Plano> findByPrecoGreaterThanEqual(BigDecimal preco);
+
+    // Busca por descrição exata
+    Optional<Plano> findByDescricao(String descricao);
+
+    // Lista planos que contenham um trecho na descrição (ignora maiúsculas/minúsculas)
+    List<Plano> findByDescricaoContainingIgnoreCase(String descricao);
 }

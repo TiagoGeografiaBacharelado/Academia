@@ -17,6 +17,7 @@ public class PlanoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "planos_id")
     private int id;
+    private String cpf;
 
     @Column(name = "planos_nome")
     private String nome;
@@ -35,5 +36,6 @@ public class PlanoModel {
 
     @Column(name = "planos_beneficios")
     String beneficio;
+
 
 }

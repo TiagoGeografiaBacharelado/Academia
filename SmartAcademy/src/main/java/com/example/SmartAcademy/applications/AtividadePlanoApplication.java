@@ -1,39 +1,60 @@
 package com.example.SmartAcademy.applications;
 
 import com.example.SmartAcademy.models.AtividadePlanoModel;
-import com.example.SmartAcademy.interfaces.AtividadePlanoRepository;
+import com.example.SmartAcademy.services.AtividadePlanoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
+@RestController
+@RequestMapping("/api/atividade_plano/app")
 public class AtividadePlanoApplication {
 
-    private AtividadePlanoRepository atividadePlanoRepository;
+    private final AtividadePlanoService atividadePlanoService;
 
     @Autowired
-    public void setAtividadePlanoRepository(AtividadePlanoRepository atividadePlanoRepository) {
-        this.atividadePlanoRepository = atividadePlanoRepository;
+    public AtividadePlanoApplication(AtividadePlanoService atividadePlanoService) {
+        this.atividadePlanoService = atividadePlanoService;
     }
 
-    public void adicionar(AtividadePlanoModel atividadePlano) {
-        atividadePlanoRepository.save(atividadePlano);
+
+    @GetMapping
+    public ResponseEntity<List<AtividadePlanoModel>> listarTodos() {
+        List<AtividadePlanoModel> clientes = atividadePlanoService.listarTodos();
+        return ResponseEntity.ok(clientes);
     }
 
-    public void atualizar(AtividadePlanoModel atividadePlano) {
-        atividadePlanoRepository.save(atividadePlano);
+    // GET /api/clientes/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<AtividadePlanoModel>> buscarPorId(@PathVariable int id) {
+        return atividadePlanoService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public void remover(int codigo) {
-        atividadePlanoRepository.deleteById(codigo);
+
+    @PostMapping
+    public ResponseEntity<AtividadePlanoModel> criar(@RequestBody AtividadePlanoModel atividadePlanoModel) {
+        AtividadePlanoModel criado = atividadePlanoService.criar(atividadePlanoModel); // CORRETO
+        return ResponseEntity.ok(criado);
     }
 
-    public List<AtividadePlanoModel> buscar() {
-        return atividadePlanoRepository.findAll();
+
+    // PUT /api/clientes/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<AtividadePlanoModel> atualizar(@PathVariable int id,
+                                                  @RequestBody AtividadePlanoModel atividadePlanoModel) {
+        AtividadePlanoModel atualizado = atividadePlanoService.atualizar(id, atividadePlanoModel);
+        return ResponseEntity.ok(atualizado);
     }
 
-    public AtividadePlanoModel buscarPorCodigo(int codigo) {
-        return atividadePlanoRepository.findById(codigo).orElse(null);
+    // DELETE /api/clientes/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable int id) {
+        atividadePlanoService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

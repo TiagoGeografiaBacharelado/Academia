@@ -1,13 +1,11 @@
-package com.example.SmartAcademy.repositories.jpa;
+package com.example.SmartAcademy.repositories.jpa; // Pacote JPA
 
-import com.example.SmartAcademy.models.AtividadeInstrutorModel;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.SmartAcademy.entities.AtividadeInstrutor; // Importa entidade Cliente
+import org.springframework.data.jpa.repository.JpaRepository; // Interface JpaRepository
+import org.springframework.stereotype.Repository; // Marca como Repository
+import java.util.Optional; // Optional para buscas
 
-import java.util.List;
-
-public interface AtividadeInstrutorJPA extends JpaRepository<AtividadeInstrutorModel, Integer> {
-
-    List<AtividadeInstrutorModel> findByInstrutorId(Integer instrutorId);
-    List<AtividadeInstrutorModel> findByNomeAtividade(String nomeAtividade);
-    List<AtividadeInstrutorModel> findByNome(Integer instrutorId, String nomeAtividade);
+@Repository // Sinaliza componente Spring
+public interface AtividadeInstrutorJPA extends JpaRepository<AtividadeInstrutor, Long> { // Extende JpaRepository
+    Optional<AtividadeInstrutor> findByCpf(String cpf);
 }

@@ -22,6 +22,9 @@ public class AtividadeInstrutorModel {
     @Column(name = "atividade_nome")
     private String nomeAtividade;
 
+    @Column(name = "atividade_cpf")
+    private String cpf;
+
     @Column(name = "instrutor_nome")
     private String nomeInstrutor;
 

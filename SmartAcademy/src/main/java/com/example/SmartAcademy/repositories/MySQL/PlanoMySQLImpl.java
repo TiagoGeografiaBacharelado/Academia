@@ -1,72 +1,78 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
-import com.example.SmartAcademy.interfaces.PlanoRepository;
+import com.example.SmartAcademy.entities.Plano;
 import com.example.SmartAcademy.models.PlanoModel;
 import com.example.SmartAcademy.repositories.jpa.PlanoJPA;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.SmartAcademy.interfaces.PlanoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
-public class PlanoMySQLImpl implements PlanoRepository {
+public class PlanoInterfaceMySQLImpl implements PlanoRepository {
 
-    private static final Logger logger = LoggerFactory.getLogger(PlanoMySQLImpl.class);
     private final PlanoJPA planoJPA;
 
-    public PlanoMySQLImpl(PlanoJPA planoJPA) {
+    @Autowired
+    public PlanoInterfaceMySQLImpl(PlanoJPA planoJPA) {
         this.planoJPA = planoJPA;
     }
 
     @Override
-    public void adicionar(PlanoModel plano) {
-        try {
-            planoJPA.save(plano);
-        } catch (Exception e) {
-            logger.error("Erro ao salvar o plano: {}", plano, e);
-        }
+    public Optional<PlanoModel> buscarPorCodigo(Long id) {
+        return planoJPA.findById(id)
+                .map(this::toModel);
     }
 
     @Override
-    public void atualizar(PlanoModel plano) {
-        try {
-            planoJPA.save(plano);
-        } catch (Exception e) {
-            logger.error("Erro ao atualizar o plano: {}", plano, e);
-        }
+    public List<PlanoModel> buscarTodos() {
+        return planoJPA.findAll().stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void remover(int codigo) {
-        if (planoJPA.existsById(codigo)) {
-            try {
-                planoJPA.deleteById(codigo);
-            } catch (Exception e) {
-                logger.error("Erro ao remover o plano com ID: {}", codigo, e);
-            }
-        } else {
-            logger.warn("Tentativa de remover plano inexistente com ID: {}", codigo);
-        }
+    public void adicionar(PlanoModel dto) {
+        Plano entity = toEntity(dto);
+        entity.setId(null); // Garante criação
+        planoJPA.save(entity);
     }
 
     @Override
-    public List<PlanoModel> buscar() {
-        return planoJPA.findAll();
+    public void atualizar(PlanoModel dto) {
+        Plano entity = toEntity(dto);
+        planoJPA.save(entity);
     }
 
     @Override
-    public PlanoModel buscarPorCodigo(int codigo) {
-        return planoJPA.findById(codigo).orElse(null);
+    public void remover(Long id) {
+        planoJPA.deleteById(id);
     }
 
     @Override
-    public List<PlanoModel> buscarPorNome(String nome) {
-        try {
-            return planoJPA.findByNome(nome);
-        } catch (Exception e) {
-            logger.error("Erro ao buscar plano por nome: {}", nome, e);
-            return List.of();
-        }
+    public Optional<PlanoModel> buscarPorNome(String nome) {
+        return planoJPA.findByNome(nome)
+                .map(this::toModel);
+    }
+
+    private PlanoModel toModel(Plano e) {
+        return new PlanoModel(
+                e.getId(),
+                e.getNome(),
+                e.getPreco(),
+                e.getDescricao()
+        );
+    }
+
+    private Plano toEntity(PlanoModel dto) {
+        return new Plano(
+                dto.getId(),
+                dto.getNome(),
+                dto.getPreco(),
+                dto.getDescricao()
+        );
     }
 }

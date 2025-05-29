@@ -18,6 +18,7 @@ public class AtividadePlanoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "atividade_plano_id")
     private int id;
+    private String cpf;
 
     @ManyToOne
     @JoinColumn(name = "atividade_id", referencedColumnName = "atividade_id")
@@ -29,4 +30,7 @@ public class AtividadePlanoModel {
 
     @Column(name = "atividade_plano_observacao")
     private String observacao;
+
+
+
 }

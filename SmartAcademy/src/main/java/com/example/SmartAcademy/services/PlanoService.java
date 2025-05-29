@@ -24,8 +24,19 @@ public class PlanoService { // Classe de serviço
         return planoRepository.buscarTodos(); // Delegação
     }
 
-    public Optional<PlanoModel> buscarPorId(Long id) { // Busca por ID
+    public Optional<PlanoModel> buscarPorId(int id) { // Busca por ID
         return planoRepository.buscarPorCodigo(id); // Delegação
+    }
+
+
+    public PlanoModel atualizar(int id, PlanoModel dto) { // Atualiza cliente existente
+        Optional<PlanoModel> existente = planoRepository.buscarPorCodigo(id); // Verifica existência
+        if (existente.isEmpty()) { // Se não existe
+            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id); // Erro
+        }
+        dto.setId(id); // Atribui ID ao DTO
+        planoRepository.atualizar(dto); // Persiste atualização
+        return dto; // Retorna DTO
     }
 
     public PlanoModel criar(PlanoModel dto) { // Cria novo cliente
@@ -36,17 +47,7 @@ public class PlanoService { // Classe de serviço
         return dto; // Retorna DTO (poderia buscar ID atualizado)
     }
 
-    public PlanoModel atualizar(Long id, PlanoModel dto) { // Atualiza cliente existente
-        Optional<PlanoModel> existente = planoRepository.buscarPorCodigo(id); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id); // Erro
-        }
-        dto.setId(id); // Atribui ID ao DTO
-        planoRepository.atualizar(dto); // Persiste atualização
-        return dto; // Retorna DTO
-    }
-
-    public void deletar(Long id) { // Deleta cliente
+    public void deletar(int id) { // Deleta cliente
         Optional<PlanoModel> existente = planoRepository.buscarPorCodigo(id); // Verifica existência
         if (existente.isEmpty()) { // Se não existe
             throw new IllegalArgumentException("Cliente não encontrado com ID: " + id); // Erro
