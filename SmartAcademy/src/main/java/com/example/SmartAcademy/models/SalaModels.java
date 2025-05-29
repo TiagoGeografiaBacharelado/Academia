@@ -9,6 +9,5 @@ import lombok.*;
 public class SalaModel {
     private Long id;
     private String nome;
-    private String descricao;
     private Integer capacidade;
 }

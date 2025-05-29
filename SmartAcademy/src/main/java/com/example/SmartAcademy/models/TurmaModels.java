@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TurmaModel {
     private Long id;
-    private String nome;
-    private LocalDateTime horarioInicio;
-    private LocalDateTime horarioFim;
+    private LocalDateTime horario;
+    private Long atividadeId; // Relacionamento com entidade Atividade (se existir)
     private Long salaId;
 }
