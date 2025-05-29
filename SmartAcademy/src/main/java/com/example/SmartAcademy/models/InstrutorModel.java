@@ -1,7 +1,7 @@
 package com.example.SmartAcademy.models;
 
 import lombok.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -14,6 +14,6 @@ public class InstrutorModel {
     private String certificado;
     private String email;
     private String telefone;
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento; // <-- Corrigido para LocalDate
     private String endereco;
 }

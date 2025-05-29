@@ -28,6 +28,11 @@ public class InstrutorTurmaInterfaceMySQLImpl implements InstrutorTurmaRepositor
     }
 
     @Override
+    public Optional<InstrutorTurmaModel> buscarPorIds(Long idInstrutor, Long idTurma) {
+        return Optional.empty();
+    }
+
+    @Override
     public List<InstrutorTurmaModel> buscarTodos() {
         return instrutorTurmaJPA.findAll().stream()
                 .map(this::toModel)
@@ -45,6 +50,16 @@ public class InstrutorTurmaInterfaceMySQLImpl implements InstrutorTurmaRepositor
     public void atualizar(InstrutorTurmaModel dto) {
         InstrutorTurma entity = toEntity(dto);
         instrutorTurmaJPA.save(entity);
+    }
+
+    @Override
+    public void remover(Long idInstrutor, Long idTurma) {
+
+    }
+
+    @Override
+    public List<InstrutorTurmaModel> buscarPorInstrutor(Long idInstrutor) {
+        return List.of();
     }
 
     @Override

@@ -53,6 +53,11 @@ public class InstrutorInterfaceMySQLImpl implements InstrutorRepository {
         instrutorJPA.deleteById(id);
     }
 
+    @Override
+    public Optional<InstrutorModel> buscarPorCpf(String cpf) {
+        return Optional.empty();
+    }
+
     private InstrutorModel toModel(Instrutor e) {
         return new InstrutorModel(
                 e.getId(),

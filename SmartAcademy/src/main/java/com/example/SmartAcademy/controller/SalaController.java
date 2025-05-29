@@ -1,4 +1,4 @@
-package com.example.SmartAcademy.controllers;
+package com.example.SmartAcademy.controller;
 
 import com.example.SmartAcademy.models.SalaModel;
 import com.example.SmartAcademy.services.SalaService;
