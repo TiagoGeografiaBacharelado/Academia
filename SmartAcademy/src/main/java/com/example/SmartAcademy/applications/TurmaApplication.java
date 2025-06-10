@@ -20,8 +20,8 @@ public class TurmaApplication {
     }
 
     @GetMapping
-    public ResponseEntity<List<TurmaModel>> listarTodas() {
-        return ResponseEntity.ok(turmaService.listarTodas());
+    public ResponseEntity<List<TurmaModel>> listarTodos() {
+        return ResponseEntity.ok(turmaService.listarTodos());
     }
 
     @GetMapping("/{id}")
@@ -32,13 +32,13 @@ public class TurmaApplication {
     }
 
     @PostMapping
-    public ResponseEntity<TurmaModel> criar(@RequestBody TurmaModel turmaModel) {
-        return ResponseEntity.ok(turmaService.criar(turmaModel));
+    public ResponseEntity<TurmaModel> criar(@RequestBody TurmaModel model) {
+        return ResponseEntity.ok(turmaService.criar(model));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TurmaModel> atualizar(@PathVariable Long id, @RequestBody TurmaModel turmaModel) {
-        return ResponseEntity.ok(turmaService.atualizar(id, turmaModel));
+    public ResponseEntity<TurmaModel> atualizar(@PathVariable Long id, @RequestBody TurmaModel model) {
+        return ResponseEntity.ok(turmaService.atualizar(id, model));
     }
 
     @DeleteMapping("/{id}")

@@ -32,13 +32,13 @@ public class InstrutorApplication {
     }
 
     @PostMapping
-    public ResponseEntity<InstrutorModel> criar(@RequestBody InstrutorModel instrutorModel) {
-        return ResponseEntity.ok(instrutorService.criar(instrutorModel));
+    public ResponseEntity<InstrutorModel> criar(@RequestBody InstrutorModel model) {
+        return ResponseEntity.ok(instrutorService.criar(model));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InstrutorModel> atualizar(@PathVariable Long id, @RequestBody InstrutorModel instrutorModel) {
-        return ResponseEntity.ok(instrutorService.atualizar(id, instrutorModel));
+    public ResponseEntity<InstrutorModel> atualizar(@PathVariable Long id, @RequestBody InstrutorModel model) {
+        return ResponseEntity.ok(instrutorService.atualizar(id, model));
     }
 
     @DeleteMapping("/{id}")

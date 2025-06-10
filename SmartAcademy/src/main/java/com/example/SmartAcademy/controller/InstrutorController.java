@@ -1,4 +1,4 @@
-package com.example.SmartAcademy.controller;
+package com.example.SmartAcademy.controllers;
 
 import com.example.SmartAcademy.models.InstrutorModel;
 import com.example.SmartAcademy.services.InstrutorService;
@@ -28,23 +28,21 @@ public class InstrutorController {
 
     @GetMapping("/{id}")
     public ResponseEntity<InstrutorModel> buscarPorId(@PathVariable Long id) {
-        Optional<InstrutorModel> optional = instrutorService.buscarPorId(id);
-        return optional.map(ResponseEntity::ok)
+        Optional<InstrutorModel> instrutor = instrutorService.buscarPorId(id);
+        return instrutor.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<InstrutorModel> criar(@RequestBody InstrutorModel instrutorModel) {
-        InstrutorModel criado = instrutorService.criar(instrutorModel);
-        URI location = URI.create("/api/instrutores/" + criado.getId());
+    public ResponseEntity<InstrutorModel> criar(@RequestBody InstrutorModel model) {
+        InstrutorModel criado = instrutorService.criar(model);
+        URI location = URI.create("/api/instrutores/" + criado.getIdInstrutor());
         return ResponseEntity.created(location).body(criado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InstrutorModel> atualizar(@PathVariable Long id,
-                                                    @RequestBody InstrutorModel instrutorModel) {
-        InstrutorModel atualizado = instrutorService.atualizar(id, instrutorModel);
-        return ResponseEntity.ok(atualizado);
+    public ResponseEntity<InstrutorModel> atualizar(@PathVariable Long id, @RequestBody InstrutorModel model) {
+        return ResponseEntity.ok(instrutorService.atualizar(id, model));
     }
 
     @DeleteMapping("/{id}")

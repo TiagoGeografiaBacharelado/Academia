@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SalaModel {
-    private Long id;
+    private Long idSala;
     private String nome;
     private Integer capacidade;
 }

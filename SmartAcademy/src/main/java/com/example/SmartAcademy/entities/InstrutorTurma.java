@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "instrutorturma")
+@Table(name = "instrutor_turma")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class InstrutorTurma {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +18,4 @@ public class InstrutorTurma {
     @ManyToOne
     @JoinColumn(name = "id_turma", nullable = false)
     private Turma turma;
-
-    @Column(name = "Cliente_id_cliente")
-    private Long clienteId;
 }

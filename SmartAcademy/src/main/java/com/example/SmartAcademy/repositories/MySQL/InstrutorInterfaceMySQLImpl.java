@@ -1,10 +1,9 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
 import com.example.SmartAcademy.entities.Instrutor;
+import com.example.SmartAcademy.interfaces.InstrutorRepository;
 import com.example.SmartAcademy.models.InstrutorModel;
 import com.example.SmartAcademy.repositories.jpa.InstrutorJPA;
-import com.example.SmartAcademy.interfaces.InstrutorRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,28 +23,24 @@ public class InstrutorInterfaceMySQLImpl implements InstrutorRepository {
 
     @Override
     public Optional<InstrutorModel> buscarPorCodigo(Long id) {
-        return instrutorJPA.findById(id)
-                .map(this::toModel);
+        return instrutorJPA.findById(id).map(this::toModel);
     }
 
     @Override
     public List<InstrutorModel> buscarTodos() {
-        return instrutorJPA.findAll().stream()
-                .map(this::toModel)
-                .collect(Collectors.toList());
+        return instrutorJPA.findAll().stream().map(this::toModel).collect(Collectors.toList());
     }
 
     @Override
-    public void adicionar(InstrutorModel dto) {
-        Instrutor entity = toEntity(dto);
-        entity.setId(null);
+    public void adicionar(InstrutorModel model) {
+        Instrutor entity = toEntity(model);
+        entity.setIdInstrutor(null);
         instrutorJPA.save(entity);
     }
 
     @Override
-    public void atualizar(InstrutorModel dto) {
-        Instrutor entity = toEntity(dto);
-        instrutorJPA.save(entity);
+    public void atualizar(InstrutorModel model) {
+        instrutorJPA.save(toEntity(model));
     }
 
     @Override
@@ -53,34 +48,19 @@ public class InstrutorInterfaceMySQLImpl implements InstrutorRepository {
         instrutorJPA.deleteById(id);
     }
 
-    @Override
-    public Optional<InstrutorModel> buscarPorCpf(String cpf) {
-        return Optional.empty();
-    }
-
-    private InstrutorModel toModel(Instrutor e) {
+    private InstrutorModel toModel(Instrutor entity) {
         return new InstrutorModel(
-                e.getId(),
-                e.getNome(),
-                e.getCpf(),
-                e.getCertificado(),
-                e.getEmail(),
-                e.getTelefone(),
-                e.getDataNascimento(),
-                e.getEndereco()
+                entity.getIdInstrutor(), entity.getNome(), entity.getCpf(),
+                entity.getCertificado(), entity.getEmail(), entity.getTelefone(),
+                entity.getDataNascimento()
         );
     }
 
-    private Instrutor toEntity(InstrutorModel dto) {
+    private Instrutor toEntity(InstrutorModel model) {
         return new Instrutor(
-                dto.getId(),
-                dto.getNome(),
-                dto.getCpf(),
-                dto.getCertificado(),
-                dto.getEmail(),
-                dto.getTelefone(),
-                dto.getDataNascimento(),
-                dto.getEndereco()
+                model.getIdInstrutor(), model.getNome(), model.getCpf(),
+                model.getCertificado(), model.getEmail(), model.getTelefone(),
+                model.getDataNascimento()
         );
     }
 }

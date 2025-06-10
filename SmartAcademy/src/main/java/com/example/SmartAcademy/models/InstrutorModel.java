@@ -8,12 +8,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InstrutorModel {
-    private Long id;
+    private Long idInstrutor;
     private String nome;
     private String cpf;
     private String certificado;
     private String email;
     private String telefone;
-    private LocalDate dataNascimento; // <-- Corrigido para LocalDate
-    private String endereco;
+    private LocalDate dataNascimento;
 }

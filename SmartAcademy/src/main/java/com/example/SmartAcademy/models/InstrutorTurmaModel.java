@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 public class InstrutorTurmaModel {
     private Long id;
-    private Long instrutorId;
-    private Long turmaId;
-    private Long clienteId;
+    private Long idInstrutor;
+    private Long idTurma;
 }

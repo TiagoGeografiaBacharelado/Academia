@@ -1,4 +1,4 @@
-package com.example.SmartAcademy.controller;
+package com.example.SmartAcademy.controllers;
 
 import com.example.SmartAcademy.models.SalaModel;
 import com.example.SmartAcademy.services.SalaService;
@@ -22,29 +22,27 @@ public class SalaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SalaModel>> listarTodas() {
-        return ResponseEntity.ok(salaService.listarTodas());
+    public ResponseEntity<List<SalaModel>> listarTodos() {
+        return ResponseEntity.ok(salaService.listarTodos());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SalaModel> buscarPorId(@PathVariable Long id) {
-        Optional<SalaModel> optional = salaService.buscarPorId(id);
-        return optional.map(ResponseEntity::ok)
+        Optional<SalaModel> sala = salaService.buscarPorId(id);
+        return sala.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<SalaModel> criar(@RequestBody SalaModel salaModel) {
-        SalaModel criado = salaService.criar(salaModel);
-        URI location = URI.create("/api/salas/" + criado.getId());
+    public ResponseEntity<SalaModel> criar(@RequestBody SalaModel model) {
+        SalaModel criado = salaService.criar(model);
+        URI location = URI.create("/api/salas/" + criado.getIdSala());
         return ResponseEntity.created(location).body(criado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SalaModel> atualizar(@PathVariable Long id,
-                                               @RequestBody SalaModel salaModel) {
-        SalaModel atualizado = salaService.atualizar(id, salaModel);
-        return ResponseEntity.ok(atualizado);
+    public ResponseEntity<SalaModel> atualizar(@PathVariable Long id, @RequestBody SalaModel model) {
+        return ResponseEntity.ok(salaService.atualizar(id, model));
     }
 
     @DeleteMapping("/{id}")

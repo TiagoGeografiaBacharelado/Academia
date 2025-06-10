@@ -1,15 +1,14 @@
 package com.example.SmartAcademy.models;
 
 import lombok.*;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TurmaModel {
-    private Long id;
-    private LocalDateTime horario;
-    private Long atividadeId; // Relacionamento com entidade Atividade (se existir)
-    private Long salaId;
+    private Long idTurma;
+    private LocalTime horario;
+    private Long idSala;
 }

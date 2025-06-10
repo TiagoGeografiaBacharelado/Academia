@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/instrutorturmas/app")
+@RequestMapping("/api/instrutorTurmas/app")
 public class InstrutorTurmaApplication {
 
     private final InstrutorTurmaService instrutorTurmaService;
@@ -20,13 +20,13 @@ public class InstrutorTurmaApplication {
     }
 
     @GetMapping
-    public ResponseEntity<List<InstrutorTurmaModel>> listarTodas() {
-        return ResponseEntity.ok(instrutorTurmaService.listarTodas());
+    public ResponseEntity<List<InstrutorTurmaModel>> listarTodos() {
+        return ResponseEntity.ok(instrutorTurmaService.listarTodos());
     }
 
-    @GetMapping("/{idInstrutor}/{idTurma}")
-    public ResponseEntity<InstrutorTurmaModel> buscarPorIds(@PathVariable Long idInstrutor, @PathVariable Long idTurma) {
-        return instrutorTurmaService.buscarPorIds(idInstrutor, idTurma)
+    @GetMapping("/{id}")
+    public ResponseEntity<InstrutorTurmaModel> buscarPorId(@PathVariable Long id) {
+        return instrutorTurmaService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -36,16 +36,14 @@ public class InstrutorTurmaApplication {
         return ResponseEntity.ok(instrutorTurmaService.criar(model));
     }
 
-    @PutMapping("/{idInstrutor}/{idTurma}")
-    public ResponseEntity<InstrutorTurmaModel> atualizar(@PathVariable Long idInstrutor,
-                                                         @PathVariable Long idTurma,
-                                                         @RequestBody InstrutorTurmaModel model) {
-        return ResponseEntity.ok(instrutorTurmaService.atualizar(idInstrutor, idTurma, model));
+    @PutMapping("/{id}")
+    public ResponseEntity<InstrutorTurmaModel> atualizar(@PathVariable Long id, @RequestBody InstrutorTurmaModel model) {
+        return ResponseEntity.ok(instrutorTurmaService.atualizar(id, model));
     }
 
-    @DeleteMapping("/{idInstrutor}/{idTurma}")
-    public ResponseEntity<Void> deletar(@PathVariable Long idInstrutor, @PathVariable Long idTurma) {
-        instrutorTurmaService.deletar(idInstrutor, idTurma);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        instrutorTurmaService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }

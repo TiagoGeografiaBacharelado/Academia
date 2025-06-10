@@ -1,14 +1,14 @@
 package com.example.SmartAcademy.interfaces;
 
 import com.example.SmartAcademy.models.InstrutorTurmaModel;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface InstrutorTurmaRepository {
-    Optional<InstrutorTurmaModel> buscarPorIds(Long idInstrutor, Long idTurma);
+    Optional<InstrutorTurmaModel> buscarPorCodigo(Long id);
     List<InstrutorTurmaModel> buscarTodos();
-    void adicionar(InstrutorTurmaModel instrutorTurmaModel);
-    void atualizar(InstrutorTurmaModel instrutorTurmaModel);
-    void remover(Long idInstrutor, Long idTurma);
-    List<InstrutorTurmaModel> buscarPorInstrutor(Long idInstrutor);
+    void adicionar(InstrutorTurmaModel model);
+    void atualizar(InstrutorTurmaModel model);
+    void remover(Long id);
 }

@@ -28,21 +28,18 @@ public class InstrutorService {
         return instrutorRepository.buscarPorCodigo(id);
     }
 
-    public InstrutorModel criar(InstrutorModel dto) {
-        if (instrutorRepository.buscarPorCpf(dto.getCpf()).isPresent()) {
-            throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf());
-        }
-        instrutorRepository.adicionar(dto);
-        return dto;
+    public InstrutorModel criar(InstrutorModel model) {
+        instrutorRepository.adicionar(model);
+        return model;
     }
 
-    public InstrutorModel atualizar(Long id, InstrutorModel dto) {
+    public InstrutorModel atualizar(Long id, InstrutorModel model) {
         if (instrutorRepository.buscarPorCodigo(id).isEmpty()) {
             throw new IllegalArgumentException("Instrutor não encontrado com ID: " + id);
         }
-        dto.setId(id);
-        instrutorRepository.atualizar(dto);
-        return dto;
+        model.setIdInstrutor(id);
+        instrutorRepository.atualizar(model);
+        return model;
     }
 
     public void deletar(Long id) {

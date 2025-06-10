@@ -28,23 +28,23 @@ public class InstrutorTurmaService {
         return instrutorTurmaRepository.buscarPorCodigo(id);
     }
 
-    public InstrutorTurmaModel criar(InstrutorTurmaModel dto) {
-        instrutorTurmaRepository.adicionar(dto);
-        return dto;
+    public InstrutorTurmaModel criar(InstrutorTurmaModel model) {
+        instrutorTurmaRepository.adicionar(model);
+        return model;
     }
 
-    public InstrutorTurmaModel atualizar(Long id, InstrutorTurmaModel dto) {
+    public InstrutorTurmaModel atualizar(Long id, InstrutorTurmaModel model) {
         if (instrutorTurmaRepository.buscarPorCodigo(id).isEmpty()) {
-            throw new IllegalArgumentException("Vínculo Instrutor-Turma não encontrado com ID: " + id);
+            throw new IllegalArgumentException("InstrutorTurma não encontrada com ID: " + id);
         }
-        dto.setId(id);
-        instrutorTurmaRepository.atualizar(dto);
-        return dto;
+        model.setId(id);
+        instrutorTurmaRepository.atualizar(model);
+        return model;
     }
 
     public void deletar(Long id) {
         if (instrutorTurmaRepository.buscarPorCodigo(id).isEmpty()) {
-            throw new IllegalArgumentException("Vínculo Instrutor-Turma não encontrado com ID: " + id);
+            throw new IllegalArgumentException("InstrutorTurma não encontrada com ID: " + id);
         }
         instrutorTurmaRepository.remover(id);
     }

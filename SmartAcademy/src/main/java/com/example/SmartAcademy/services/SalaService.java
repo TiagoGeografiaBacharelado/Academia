@@ -28,18 +28,18 @@ public class SalaService {
         return salaRepository.buscarPorCodigo(id);
     }
 
-    public SalaModel criar(SalaModel dto) {
-        salaRepository.adicionar(dto);
-        return dto;
+    public SalaModel criar(SalaModel model) {
+        salaRepository.adicionar(model);
+        return model;
     }
 
-    public SalaModel atualizar(Long id, SalaModel dto) {
+    public SalaModel atualizar(Long id, SalaModel model) {
         if (salaRepository.buscarPorCodigo(id).isEmpty()) {
             throw new IllegalArgumentException("Sala não encontrada com ID: " + id);
         }
-        dto.setId(id);
-        salaRepository.atualizar(dto);
-        return dto;
+        model.setIdSala(id);
+        salaRepository.atualizar(model);
+        return model;
     }
 
     public void deletar(Long id) {

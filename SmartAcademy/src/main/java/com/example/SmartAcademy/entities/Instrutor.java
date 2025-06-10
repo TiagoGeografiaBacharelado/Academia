@@ -11,10 +11,9 @@ import java.time.LocalDate;
 public class Instrutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_instrutor")
-    private Long id;
+    private Long idInstrutor;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String nome;
 
     @Column(length = 45)
@@ -26,12 +25,9 @@ public class Instrutor {
     @Column(length = 100)
     private String email;
 
-    @Column(length = 45)
+    @Column(length = 20)
     private String telefone;
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
-
-    @Column(length = 100)
-    private String endereco;
 }

@@ -1,9 +1,9 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
 import com.example.SmartAcademy.entities.Sala;
+import com.example.SmartAcademy.interfaces.SalaRepository;
 import com.example.SmartAcademy.models.SalaModel;
 import com.example.SmartAcademy.repositories.jpa.SalaJPA;
-import com.example.SmartAcademy.interfaces.SalaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,28 +23,24 @@ public class SalaInterfaceMySQLImpl implements SalaRepository {
 
     @Override
     public Optional<SalaModel> buscarPorCodigo(Long id) {
-        return salaJPA.findById(id)
-                .map(this::toModel);
+        return salaJPA.findById(id).map(this::toModel);
     }
 
     @Override
     public List<SalaModel> buscarTodos() {
-        return salaJPA.findAll().stream()
-                .map(this::toModel)
-                .collect(Collectors.toList());
+        return salaJPA.findAll().stream().map(this::toModel).collect(Collectors.toList());
     }
 
     @Override
-    public void adicionar(SalaModel dto) {
-        Sala entity = toEntity(dto);
+    public void adicionar(SalaModel model) {
+        Sala entity = toEntity(model);
         entity.setIdSala(null);
         salaJPA.save(entity);
     }
 
     @Override
-    public void atualizar(SalaModel dto) {
-        Sala entity = toEntity(dto);
-        salaJPA.save(entity);
+    public void atualizar(SalaModel model) {
+        salaJPA.save(toEntity(model));
     }
 
     @Override
@@ -52,19 +48,11 @@ public class SalaInterfaceMySQLImpl implements SalaRepository {
         salaJPA.deleteById(id);
     }
 
-    private SalaModel toModel(Sala e) {
-        return new SalaModel(
-                e.getIdSala(),
-                e.getNome(),
-                e.getCapacidade()
-        );
+    private SalaModel toModel(Sala entity) {
+        return new SalaModel(entity.getIdSala(), entity.getNome(), entity.getCapacidade());
     }
 
-    private Sala toEntity(SalaModel dto) {
-        Sala sala = new Sala();
-        sala.setIdSala(dto.getId());
-        sala.setNome(dto.getNome());
-        sala.setCapacidade(dto.getCapacidade());
-        return sala;
+    private Sala toEntity(SalaModel model) {
+        return new Sala(model.getIdSala(), model.getNome(), model.getCapacidade());
     }
 }

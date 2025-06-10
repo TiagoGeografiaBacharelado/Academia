@@ -9,11 +9,11 @@ import lombok.*;
 public class Sala {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_sala")
-    private Long id;
+    private Long idSala;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private Integer capacidade;
 }

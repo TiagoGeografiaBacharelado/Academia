@@ -21,25 +21,25 @@ public class TurmaService {
     }
 
     public List<TurmaModel> listarTodos() {
-        return turmaRepository.buscarTodas();
+        return turmaRepository.buscarTodos();
     }
 
     public Optional<TurmaModel> buscarPorId(Long id) {
         return turmaRepository.buscarPorCodigo(id);
     }
 
-    public TurmaModel criar(TurmaModel dto) {
-        turmaRepository.adicionar(dto);
-        return dto;
+    public TurmaModel criar(TurmaModel model) {
+        turmaRepository.adicionar(model);
+        return model;
     }
 
-    public TurmaModel atualizar(Long id, TurmaModel dto) {
+    public TurmaModel atualizar(Long id, TurmaModel model) {
         if (turmaRepository.buscarPorCodigo(id).isEmpty()) {
             throw new IllegalArgumentException("Turma não encontrada com ID: " + id);
         }
-        dto.setId(id);
-        turmaRepository.atualizar(dto);
-        return dto;
+        model.setIdTurma(id);
+        turmaRepository.atualizar(model);
+        return model;
     }
 
     public void deletar(Long id) {

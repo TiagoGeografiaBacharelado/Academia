@@ -20,8 +20,8 @@ public class SalaApplication {
     }
 
     @GetMapping
-    public ResponseEntity<List<SalaModel>> listarTodas() {
-        return ResponseEntity.ok(salaService.listarTodas());
+    public ResponseEntity<List<SalaModel>> listarTodos() {
+        return ResponseEntity.ok(salaService.listarTodos());
     }
 
     @GetMapping("/{id}")
@@ -32,13 +32,13 @@ public class SalaApplication {
     }
 
     @PostMapping
-    public ResponseEntity<SalaModel> criar(@RequestBody SalaModel salaModel) {
-        return ResponseEntity.ok(salaService.criar(salaModel));
+    public ResponseEntity<SalaModel> criar(@RequestBody SalaModel model) {
+        return ResponseEntity.ok(salaService.criar(model));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SalaModel> atualizar(@PathVariable Long id, @RequestBody SalaModel salaModel) {
-        return ResponseEntity.ok(salaService.atualizar(id, salaModel));
+    public ResponseEntity<SalaModel> atualizar(@PathVariable Long id, @RequestBody SalaModel model) {
+        return ResponseEntity.ok(salaService.atualizar(id, model));
     }
 
     @DeleteMapping("/{id}")
