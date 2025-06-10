@@ -28,8 +28,8 @@ public class AtividadePlanoController { // Classe de controller
     }
 
     @GetMapping("/{id}") // GET /api/atividade-plano/{id}
-    public ResponseEntity<AtividadePlanoModel> buscarPorId(@PathVariable Long id) {
-        Optional<AtividadePlanoModel> optional = atividadePlanoService.buscarPorId(id); // Busca por ID
+    public ResponseEntity<Optional<AtividadePlanoModel>> buscarPorId(@PathVariable int id) {
+        Optional<Optional<AtividadePlanoModel>> optional = atividadePlanoService.buscarPorId(id); // Busca por ID
         return optional
                 .map(ResponseEntity::ok) // Se presente, 200 OK
                 .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
@@ -43,14 +43,14 @@ public class AtividadePlanoController { // Classe de controller
     }
 
     @PutMapping("/{id}") // PUT /api/atividade-plano/{id}
-    public ResponseEntity<AtividadePlanoModel> atualizar(@PathVariable Long id,
+    public ResponseEntity<AtividadePlanoModel> atualizar(@PathVariable int id,
                                                          @RequestBody AtividadePlanoModel model) {
         AtividadePlanoModel atualizado = atividadePlanoService.atualizar(id, model); // Atualiza
         return ResponseEntity.ok(atualizado); // HTTP 200 OK
     }
 
     @DeleteMapping("/{id}") // DELETE /api/atividade-plano/{id}
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable int id) {
         atividadePlanoService.deletar(id); // Deleta recurso
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }

@@ -28,7 +28,7 @@ public class AtividadeController { // Classe de controller
     }
 
     @GetMapping("/{id}") // GET /api/clientes/{id}
-    public ResponseEntity<AtividadeModel> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<AtividadeModel> buscarPorId(@PathVariable int id) {
         Optional<AtividadeModel> optional = atividadeService.buscarPorId(id); // Busca por ID
         return optional
                 .map(ResponseEntity::ok) // Se presente, 200 OK
@@ -43,14 +43,14 @@ public class AtividadeController { // Classe de controller
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AtividadeModel> atualizar(@PathVariable Long id,
+    public ResponseEntity<AtividadeModel> atualizar(@PathVariable int id,
                                                   @RequestBody AtividadeModel atividadeModel) {
         AtividadeModel atualizado = atividadeService.atualizar(id, atividadeModel); // Atualiza
         return ResponseEntity.ok(atualizado); // HTTP 200 OK
     }
 
     @DeleteMapping("/{id}") // DELETE /api/clientes/{id}
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable int id) {
         atividadeService.deletar(id); // Deleta recurso
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }

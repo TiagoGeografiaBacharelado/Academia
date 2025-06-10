@@ -22,4 +22,32 @@ public class AtividadeInstrutor {
     @ManyToOne
     @JoinColumn(name = "id_instrutor", nullable = false)
     private Instrutor instrutor;
+
+    public int getInstrutorId() {
+        return instrutor.getId();
+    }
+
+    public String getInstrutorNome() {
+        return instrutor.getNome();
+    }
+
+    public String getInstrutorCpf() {
+        return instrutor.getCpf();
+    }
+
+    public String getInstrutorEndereco() {
+        return instrutor.getEndereco();
+    }
+
+    public String getInstrutorEmail() {
+        return instrutor.getEmail();
+    }
+
+    public String getInstrutorTelefone() {
+        return instrutor.getTelefone();
+    }
+
+    public String getInstrutorDataNascimento() {
+        return instrutor.getDataNascimento();
+    }
 }

@@ -3,7 +3,6 @@ package com.example.SmartAcademy.repositories.MySQL;
 import com.example.SmartAcademy.entities.Plano;
 import com.example.SmartAcademy.models.PlanoModel;
 import com.example.SmartAcademy.repositories.jpa.PlanoJPA;
-import com.example.SmartAcademy.interfaces.PlanoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,32 +11,29 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class PlanoInterfaceMySQLImpl implements PlanoRepository {
+public class PlanoMySQLImpl implements com.example.SmartAcademy.Interfaces.PlanoRepository {
 
     private final PlanoJPA planoJPA;
 
     @Autowired
-    public PlanoInterfaceMySQLImpl(PlanoJPA planoJPA) {
+    public PlanoMySQLImpl(PlanoJPA planoJPA) {
         this.planoJPA = planoJPA;
     }
 
     @Override
-    public Optional<PlanoModel> buscarPorCodigo(Long id) {
-        return planoJPA.findById(id)
-                .map(this::toModel);
+    public Optional<PlanoModel> buscarPorCodigo(long id) {
+        return planoJPA.findById(id).map(this::toModel);
     }
 
     @Override
     public List<PlanoModel> buscarTodos() {
-        return planoJPA.findAll().stream()
-                .map(this::toModel)
-                .collect(Collectors.toList());
+        return PlanoJPA.findAll().stream().map(this::toModel).collect(Collectors.toList());
     }
 
     @Override
     public void adicionar(PlanoModel dto) {
         Plano entity = toEntity(dto);
-        entity.setId(null); // Garante criação
+        entity.setId(null);
         planoJPA.save(entity);
     }
 
@@ -52,27 +48,11 @@ public class PlanoInterfaceMySQLImpl implements PlanoRepository {
         planoJPA.deleteById(id);
     }
 
-    @Override
-    public Optional<PlanoModel> buscarPorNome(String nome) {
-        return planoJPA.findByNome(nome)
-                .map(this::toModel);
-    }
-
     private PlanoModel toModel(Plano e) {
-        return new PlanoModel(
-                e.getId(),
-                e.getNome(),
-                e.getPreco(),
-                e.getDescricao()
-        );
+        return new PlanoModel(e.getId(), e.getDescricao());
     }
 
     private Plano toEntity(PlanoModel dto) {
-        return new Plano(
-                dto.getId(),
-                dto.getNome(),
-                dto.getPreco(),
-                dto.getDescricao()
-        );
+        return new Plano(dto.getId(), dto.getDescricao());
     }
 }

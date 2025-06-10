@@ -39,6 +39,11 @@ public class AtividadeService { // Classe de serviço
     }
 
 
+    public AtividadeModel criar(AtividadeModel dto) {
+        atividadeRepository.adicionar(dto);
+        return dto;
+    }
+
     public void deletar(int id) { // Deleta cliente
         Optional<Optional<AtividadeModel>> existente = Optional.ofNullable(atividadeRepository.buscarPorCodigo(id)); // Verifica existência
         if (existente.isEmpty()) { // Se não existe
