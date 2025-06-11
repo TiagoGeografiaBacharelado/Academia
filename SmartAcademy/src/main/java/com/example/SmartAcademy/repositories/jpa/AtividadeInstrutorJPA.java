@@ -9,3 +9,4 @@ import java.util.Optional; // Optional para buscas
 public interface AtividadeInstrutorJPA extends JpaRepository<AtividadeInstrutor, Long> { // Extende JpaRepository
     Optional<AtividadeInstrutor> findByCpf(String cpf);
 }
+

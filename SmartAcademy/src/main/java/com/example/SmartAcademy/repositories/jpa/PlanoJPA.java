@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 public interface PlanoJPA extends JpaRepository<Plano, Long> {
 
-    // Busca por nome exato
     Optional<Plano> findByNome(String nome);
 
     // Lista planos que contenham parte do nome (ignora maiúsculas/minúsculas)

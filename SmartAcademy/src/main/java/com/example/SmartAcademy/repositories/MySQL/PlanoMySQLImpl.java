@@ -1,9 +1,11 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
 import com.example.SmartAcademy.entities.Plano;
+import com.example.SmartAcademy.interfaces.PlanoRepository;
 import com.example.SmartAcademy.models.PlanoModel;
-import com.example.SmartAcademy.repositories.jpa.PlanoJPA;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,48 +13,68 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class PlanoMySQLImpl implements com.example.SmartAcademy.Interfaces.PlanoRepository {
+@Transactional
+public class PlanoMySQLImpl implements PlanoRepository {
 
-    private final PlanoJPA planoJPA;
-
-    @Autowired
-    public PlanoMySQLImpl(PlanoJPA planoJPA) {
-        this.planoJPA = planoJPA;
-    }
-
-    @Override
-    public Optional<PlanoModel> buscarPorCodigo(long id) {
-        return planoJPA.findById(id).map(this::toModel);
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<PlanoModel> buscarTodos() {
-        return PlanoJPA.findAll().stream().map(this::toModel).collect(Collectors.toList());
+        List<Plano> planos = entityManager.createQuery("SELECT p FROM Plano p", Plano.class).getResultList();
+        return planos.stream().map(this::toModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<PlanoModel> buscarPorCodigo(int id) {
+        Plano plano = entityManager.find(Plano.class, id);
+        return plano != null ? Optional.of(toModel(plano)) : Optional.empty();
+    }
+
+    @Override
+    public Optional<PlanoModel> buscarPorCpf(String cpf) {
+        List<Plano> resultados = entityManager.createQuery(
+                        "SELECT p FROM Plano p WHERE p.descricao LIKE :cpf", Plano.class)
+                .setParameter("cpf", "%" + cpf + "%") // Exemplo: filtro fictício
+                .getResultList();
+
+        return resultados.isEmpty() ? Optional.empty() : Optional.of(toModel(resultados.get(0)));
     }
 
     @Override
     public void adicionar(PlanoModel dto) {
-        Plano entity = toEntity(dto);
-        entity.setId(null);
-        planoJPA.save(entity);
+        Plano plano = toEntity(dto);
+        entityManager.persist(plano);
     }
 
     @Override
     public void atualizar(PlanoModel dto) {
-        Plano entity = toEntity(dto);
-        planoJPA.save(entity);
+        Plano plano = toEntity(dto);
+        entityManager.merge(plano);
     }
 
     @Override
-    public void remover(Long id) {
-        planoJPA.deleteById(id);
+    public void remover(int id) {
+        Plano plano = entityManager.find(Plano.class, id);
+        if (plano != null) {
+            entityManager.remove(plano);
+        }
     }
 
-    private PlanoModel toModel(Plano e) {
-        return new PlanoModel(e.getId(), e.getDescricao());
+    private PlanoModel toModel(Plano plano) {
+        PlanoModel model = new PlanoModel();
+        model.setId(plano.getId());
+        model.setNome(plano.getNome());
+        model.setDescricao(plano.getDescricao());
+        return model;
     }
 
-    private Plano toEntity(PlanoModel dto) {
-        return new Plano(dto.getId(), dto.getDescricao());
+
+    private Plano toEntity(PlanoModel model) {
+        Plano plano = new Plano();
+        plano.setId(model.getId());
+        plano.setNome(model.getNome());
+        plano.setDescricao(model.getDescricao());
+        return plano;
     }
 }

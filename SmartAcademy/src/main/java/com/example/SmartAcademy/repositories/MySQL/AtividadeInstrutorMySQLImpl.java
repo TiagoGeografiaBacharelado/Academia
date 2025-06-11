@@ -1,9 +1,11 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
-import com.example.SmartAcademy.entities.AtividadeInstrutor;
-import com.example.SmartAcademy.models.AtividadeInstrutorModel;
-import com.example.SmartAcademy.repositories.jpa.AtividadeInstrutorJPA;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.SmartAcademy.entities.Plano;
+import com.example.SmartAcademy.interfaces.PlanoRepository;
+import com.example.SmartAcademy.models.PlanoModel;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,79 +13,68 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class AtividadeInstrutorMySQLImpl implements com.example.SmartAcademy.interfaces.AtividadeInstrutorRepository {
+@Transactional
+public class AtividadeInstrutorMySQLImpl implements PlanoRepository {
 
-    private final AtividadeInstrutorJPA atividadeInstrutorJPA;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    @Autowired
-    public AtividadeInstrutorMySQLImpl(AtividadeInstrutorJPA atividadeInstrutorJPA) {
-        this.atividadeInstrutorJPA = atividadeInstrutorJPA;
+    @Override
+    public List<PlanoModel> buscarTodos() {
+        List<Plano> planos = entityManager.createQuery("SELECT p FROM Plano p", Plano.class).getResultList();
+        return planos.stream().map(this::toModel).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<AtividadeInstrutorModel> buscarPorCodigo(Long id) {
-        return atividadeInstrutorJPA.findById(id)
-                .map(this::toModel);
+    public Optional<PlanoModel> buscarPorCodigo(int id) {
+        Plano plano = entityManager.find(Plano.class, id);
+        return plano != null ? Optional.of(toModel(plano)) : Optional.empty();
     }
 
     @Override
-    public List<AtividadeInstrutorModel> buscarTodos() {
-        return atividadeInstrutorJPA.findAll().stream()
-                .map(this::toModel)
-                .collect(Collectors.toList());
+    public Optional<PlanoModel> buscarPorCpf(String cpf) {
+        List<Plano> resultados = entityManager.createQuery(
+                        "SELECT p FROM Plano p WHERE p.descricao LIKE :cpf", Plano.class)
+                .setParameter("cpf", "%" + cpf + "%") // Exemplo: filtro fictício
+                .getResultList();
+
+        return resultados.isEmpty() ? Optional.empty() : Optional.of(toModel(resultados.get(0)));
     }
 
     @Override
-    public void adicionar(AtividadeInstrutorJPA dto) {
-        AtividadeInstrutor entity = toEntity(dto);
-        entity.setId(null);
-        atividadeInstrutorJPA.save(entity);
+    public void adicionar(PlanoModel dto) {
+        Plano plano = toEntity(dto);
+        entityManager.persist(plano);
     }
 
     @Override
-    public void atualizar(AtividadeInstrutorModel dto) {
-        AtividadeInstrutor entity = toEntity(dto);
-        atividadeInstrutorJPA.save(entity);
+    public void atualizar(PlanoModel dto) {
+        Plano plano = toEntity(dto);
+        entityManager.merge(plano);
     }
 
     @Override
-    public void remover(Long id) {
-        atividadeInstrutorJPA.deleteById(id);
+    public void remover(int id) {
+        Plano plano = entityManager.find(Plano.class, id);
+        if (plano != null) {
+            entityManager.remove(plano);
+        }
     }
 
-    @Override
-    public Optional<AtividadeInstrutorModel> buscarPorCpf(String cpf) {
-        return atividadeInstrutorJPA.findByCpf(cpf)
-                .map(this::toModel);
+    private PlanoModel toModel(Plano plano) {
+        PlanoModel model = new PlanoModel();
+        model.setId(plano.getId());
+        model.setNome(plano.getNome());
+        model.setDescricao(plano.getDescricao());
+        return model;
     }
 
-    private AtividadeInstrutorModel toModel(AtividadeInstrutor e) {
-        return new AtividadeInstrutorModel(
-                e.getId(),
-                e.getNome(),
-                e.getCpf(),
-                e.getEndereco(),
-                e.getEmail(),
-                e.getTelefone(),
-                e.getDataNascimento(),
-                e.getObservacaoMedica(),
-                e.getAltura(),
-                e.getPeso()
-        );
-    }
 
-    private AtividadeInstrutor toEntity(AtividadeInstrutor dto) {
-        return new AtividadeInstrutor(
-                dto.getId(),
-                dto.getNome(),
-                dto.getCpf(),
-                dto.getEndereco(),
-                dto.getEmail(),
-                dto.getTelefone(),
-                dto.getDataNascimento(),
-                dto.getObservacaoMedica(),
-                dto.getAltura(),
-                dto.getPeso()
-        );
+    private Plano toEntity(PlanoModel model) {
+        Plano plano = new Plano();
+        plano.setId(model.getId());
+        plano.setNome(model.getNome());
+        plano.setDescricao(model.getDescricao());
+        return plano;
     }
 }
