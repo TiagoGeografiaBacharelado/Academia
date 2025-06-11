@@ -35,19 +35,6 @@ public class AtividadeInstrutorApplication {
     }
 
 
-    @PostMapping
-    public ResponseEntity<AtividadeInstrutorModel> criar(@RequestBody AtividadeInstrutorModel atividadeInstrutorModel) {
-        AtividadeInstrutorModel criado = atividadeInstrutorModel.criar(atividadeInstrutorModel);
-        return ResponseEntity.ok(criado);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<AtividadeInstrutorModel> atualizar(@PathVariable int id,
-                                                  @RequestBody AtividadeInstrutorModel atividadeInstrutorModel) {
-        AtividadeInstrutorModel atualizado = atividadeInstrutorModel.atualizar(id, atividadeInstrutorService);
-        return ResponseEntity.ok(atualizado);
-    }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable int id) {

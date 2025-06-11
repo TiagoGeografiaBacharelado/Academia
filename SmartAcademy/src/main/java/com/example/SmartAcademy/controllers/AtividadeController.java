@@ -28,8 +28,8 @@ public class AtividadeController { // Classe de controller
     }
 
     @GetMapping("/{id}") // GET /api/clientes/{id}
-    public ResponseEntity<AtividadeModel> buscarPorId(@PathVariable int id) {
-        Optional<AtividadeModel> optional = atividadeService.buscarPorId(id); // Busca por ID
+    public ResponseEntity<Optional<AtividadeModel>> buscarPorId(@PathVariable int id) {
+        Optional<Optional<AtividadeModel>> optional = atividadeService.buscarPorId(id); // Busca por ID
         return optional
                 .map(ResponseEntity::ok) // Se presente, 200 OK
                 .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
