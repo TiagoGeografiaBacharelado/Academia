@@ -36,8 +36,7 @@ public class InstrutorApplication {
     @PostMapping
     public ResponseEntity<InstrutorModel> criar(@RequestBody InstrutorModel model) {
         InstrutorModel criado = instrutorService.criar(model);
-        URI location = URI.create("/api/instrutores/app" + criado.getIdInstrutor());
-        return ResponseEntity.created(location).body(criado);
+        return ResponseEntity.status(201).body(criado); // ou .ok() se preferir 200
     }
 
     @PutMapping("/{id}")
