@@ -2,12 +2,14 @@ package com.example.SmartAcademy.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "instrutor")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Instrutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

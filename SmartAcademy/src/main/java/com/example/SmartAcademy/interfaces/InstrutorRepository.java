@@ -1,7 +1,6 @@
 package com.example.SmartAcademy.interfaces;
 
 import com.example.SmartAcademy.models.InstrutorModel;
-
 import java.util.List;
 import java.util.Optional;
 

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/salas/app")
@@ -26,14 +28,16 @@ public class SalaApplication {
 
     @GetMapping("/{id}")
     public ResponseEntity<SalaModel> buscarPorId(@PathVariable Long id) {
-        return salaService.buscarPorId(id)
-                .map(ResponseEntity::ok)
+        Optional<SalaModel> sala = salaService.buscarPorId(id);
+        return sala.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<SalaModel> criar(@RequestBody SalaModel model) {
-        return ResponseEntity.ok(salaService.criar(model));
+        SalaModel criado = salaService.criar(model);
+        URI location = URI.create("/api/salas/app/" + criado.getIdSala());
+        return ResponseEntity.created(location).body(criado);
     }
 
     @PutMapping("/{id}")

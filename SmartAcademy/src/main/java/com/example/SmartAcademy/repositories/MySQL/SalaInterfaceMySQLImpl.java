@@ -49,10 +49,16 @@ public class SalaInterfaceMySQLImpl implements SalaRepository {
     }
 
     private SalaModel toModel(Sala entity) {
-        return new SalaModel(entity.getIdSala(), entity.getNome(), entity.getCapacidade());
+        return new SalaModel(entity.getIdSala(),
+                entity.getNome(),
+                entity.getCapacidade()
+        );
     }
 
     private Sala toEntity(SalaModel model) {
-        return new Sala(model.getIdSala(), model.getNome(), model.getCapacidade());
+        return new Sala(model.getIdSala(),
+                model.getNome(),
+                model.getCapacidade()
+        );
     }
 }

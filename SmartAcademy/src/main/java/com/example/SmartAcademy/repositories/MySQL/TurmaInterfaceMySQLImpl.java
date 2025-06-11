@@ -53,7 +53,10 @@ public class TurmaInterfaceMySQLImpl implements TurmaRepository {
     }
 
     private TurmaModel toModel(Turma entity) {
-        return new TurmaModel(entity.getIdTurma(), entity.getHorario(), entity.getSala().getIdSala());
+        return new TurmaModel(entity.getIdTurma(),
+                entity.getHorario(),
+                entity.getSala().getIdSala()
+        );
     }
 
     private Turma toEntity(TurmaModel model) {

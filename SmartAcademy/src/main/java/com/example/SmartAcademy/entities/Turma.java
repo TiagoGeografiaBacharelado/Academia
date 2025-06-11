@@ -2,7 +2,6 @@ package com.example.SmartAcademy.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalTime;
 
 @Entity

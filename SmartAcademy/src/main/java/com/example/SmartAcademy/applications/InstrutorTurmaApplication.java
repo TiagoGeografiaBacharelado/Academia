@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/instrutorTurmas/app")
@@ -26,14 +28,16 @@ public class InstrutorTurmaApplication {
 
     @GetMapping("/{id}")
     public ResponseEntity<InstrutorTurmaModel> buscarPorId(@PathVariable Long id) {
-        return instrutorTurmaService.buscarPorId(id)
-                .map(ResponseEntity::ok)
+        Optional<InstrutorTurmaModel> model = instrutorTurmaService.buscarPorId(id);
+        return model.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<InstrutorTurmaModel> criar(@RequestBody InstrutorTurmaModel model) {
-        return ResponseEntity.ok(instrutorTurmaService.criar(model));
+        InstrutorTurmaModel criado = instrutorTurmaService.criar(model);
+        URI location = URI.create("/api/instrutorTurmas/app/" + criado.getId());
+        return ResponseEntity.created(location).body(criado);
     }
 
     @PutMapping("/{id}")

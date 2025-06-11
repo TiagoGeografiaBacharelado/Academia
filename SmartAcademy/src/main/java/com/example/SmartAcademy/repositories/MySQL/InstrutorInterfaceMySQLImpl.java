@@ -58,8 +58,12 @@ public class InstrutorInterfaceMySQLImpl implements InstrutorRepository {
 
     private Instrutor toEntity(InstrutorModel model) {
         return new Instrutor(
-                model.getIdInstrutor(), model.getNome(), model.getCpf(),
-                model.getCertificado(), model.getEmail(), model.getTelefone(),
+                model.getIdInstrutor(),
+                model.getNome(),
+                model.getCpf(),
+                model.getCertificado(),
+                model.getEmail(),
+                model.getTelefone(),
                 model.getDataNascimento()
         );
     }

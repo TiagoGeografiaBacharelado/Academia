@@ -1,7 +1,6 @@
 package com.example.SmartAcademy.interfaces;
 
 import com.example.SmartAcademy.models.InstrutorTurmaModel;
-
 import java.util.List;
 import java.util.Optional;
 
