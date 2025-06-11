@@ -1,55 +1,56 @@
-package com.example.SmartAcademy.services; // Pacote de serviços
+package com.example.SmartAcademy.services;
 
-import com.example.SmartAcademy.interfaces.AtividadeRepository; // Importa interface de repositório
-import com.example.SmartAcademy.models.AtividadeModel; // Importa modelo DTO
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.stereotype.Service; // Marca como serviço
-import org.springframework.transaction.annotation.Transactional; // Transações
+import com.example.SmartAcademy.interfaces.AtividadeRepository;
+import com.example.SmartAcademy.models.AtividadeModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.util.List;
+import java.util.Optional;
 
-@Service // Define bean de serviço
-@Transactional // Gerencia transações automaticamente
-public class AtividadeService { // Classe de serviço
+@Service
+@Transactional
+public class AtividadeService {
 
-    private final AtividadeRepository atividadeRepository; // Dependência do repositório
+    private final AtividadeRepository atividadeRepository;
 
-    @Autowired // Injeta via construtor
+    @Autowired
     public AtividadeService(AtividadeRepository atividadeRepository) {
-        this.atividadeRepository = atividadeRepository; // Atribuição
+        this.atividadeRepository = atividadeRepository;
     }
 
-    public List<AtividadeModel> listarTodos() { // Lista todos clientes
-        return atividadeRepository.buscarTodos(); // Delegação
+    public List<AtividadeModel> listarTodos() {
+        return atividadeRepository.buscarTodos();
     }
 
-    public Optional<Optional<AtividadeModel>> buscarPorId(int id) { // Busca por ID
-        return Optional.ofNullable(atividadeRepository.buscarPorCodigo(id)); // Delegação
+    public Optional<AtividadeModel> buscarPorId(int id) {
+        return atividadeRepository.buscarPorCodigo(id);
     }
 
-    public AtividadeModel atualizar(int id, AtividadeModel dto) { // Atualiza cliente existente
-        Optional<Optional<AtividadeModel>> existente = Optional.ofNullable(atividadeRepository.buscarPorCodigo(id)); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("Plano não encontrado com ID: " + id); // Erro
-        }
-        dto.setId(id); // Atribui ID ao DTO
-        atividadeRepository.atualizar(dto); // Persiste atualização
-        return dto; // Retorna DTO
-    }
+    public AtividadeModel atualizar(int id, AtividadeModel dto) {
+        AtividadeModel existente = atividadeRepository.buscarPorCodigo(id)
+                .orElseThrow(() -> new IllegalArgumentException("Atividade não encontrada com ID: " + id));
 
+        existente.setNome(dto.getNome());
+        existente.setDescricao(dto.getDescricao());
+        existente.setDuracaoMinutos(dto.getDuracaoMinutos());
+        existente.setNivel(dto.getNivel());
+        existente.setTipo(dto.getTipo());
+
+        atividadeRepository.atualizar(existente);
+        return existente;
+    }
 
     public AtividadeModel criar(AtividadeModel dto) {
         atividadeRepository.adicionar(dto);
         return dto;
     }
 
-    public void deletar(int id) { // Deleta cliente
-        Optional<Optional<AtividadeModel>> existente = Optional.ofNullable(atividadeRepository.buscarPorCodigo(id)); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("Plano não encontrado com ID: " + id); // Erro
-        }
-        atividadeRepository.remover(id); // Remove
-    }
+    public void deletar(int id) {
+        AtividadeModel existente = atividadeRepository.buscarPorCodigo(id)
+                .orElseThrow(() -> new IllegalArgumentException("Atividade não encontrada com ID: " + id));
 
+        atividadeRepository.remover(id);
+    }
 }

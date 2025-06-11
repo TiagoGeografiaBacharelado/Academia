@@ -1,6 +1,5 @@
 package com.example.SmartAcademy.models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +29,8 @@ public class AtividadeModel {
     private int duracaoMinutos;
 
     @Column(name = "atividade_nivel")
-    private String nivel;  // Ex: Iniciante, Intermediário, Avançado
+    private String nivel;
 
     @Column(name = "atividade_tipo")
-    private String tipo;   // Ex: Aeróbica, Musculação, Funcional, etc.
+    private String tipo;
 }

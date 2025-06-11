@@ -3,14 +3,12 @@ package com.example.SmartAcademy.applications;
 import com.example.SmartAcademy.models.AtividadeModel;
 import com.example.SmartAcademy.services.AtividadeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/Atividades/app")
+@Component
 public class AtividadeApplication {
 
     private final AtividadeService atividadeService;
@@ -20,33 +18,23 @@ public class AtividadeApplication {
         this.atividadeService = atividadeService;
     }
 
-    // GET /api/clientes
-    @GetMapping
-    public ResponseEntity<List<AtividadeModel>> listarTodos() {
-        List<AtividadeModel> atividades = atividadeService.listarTodos();
-        return ResponseEntity.ok(atividades);
+    public List<AtividadeModel> listarTodasAtividades() {
+        return atividadeService.listarTodos();
     }
 
-    // GET /api/clientes/{id}
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<AtividadeModel>> buscarPorId(@PathVariable int id) {
-        return atividadeService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public Optional<AtividadeModel> buscarAtividadePorId(int id) {
+        return atividadeService.buscarPorId(id);
     }
 
-    // PUT /api/clientes/{id}
-    @PutMapping("/{id}")
-    public ResponseEntity<AtividadeModel> atualizar(@PathVariable int id,
-                                                  @RequestBody AtividadeModel atividadeModel) {
-        AtividadeModel atualizado = atividadeService.atualizar(id, atividadeModel);
-        return ResponseEntity.ok(atualizado);
+    public AtividadeModel atualizarAtividade(int id, AtividadeModel atividadeModel) {
+        return atividadeService.atualizar(id, atividadeModel);
     }
 
-    // DELETE /api/clientes/{id}
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable int id) {
+    public void deletarAtividade(int id) {
         atividadeService.deletar(id);
-        return ResponseEntity.noContent().build();
+    }
+
+    public AtividadeModel criarAtividade(AtividadeModel atividadeModel) {
+        return atividadeService.criar(atividadeModel);
     }
 }

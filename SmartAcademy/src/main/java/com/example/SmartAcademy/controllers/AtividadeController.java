@@ -1,58 +1,52 @@
-package com.example.SmartAcademy.controllers; // Pacote de controllers
+package com.example.SmartAcademy.controllers;
 
-import com.example.SmartAcademy.models.AtividadeModel; // DTO para transporte
-import com.example.SmartAcademy.services.AtividadeService; // Serviço de negócio
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.http.ResponseEntity; // Respostas HTTP
-import org.springframework.web.bind.annotation.*; // Anotações REST
+import com.example.SmartAcademy.models.AtividadeModel;
+import com.example.SmartAcademy.services.AtividadeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.net.URI; // Para header Location
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.net.URI;
+import java.util.List;
 
-@RestController // Define controller REST
-@RequestMapping("/api/atividades") // Mapeia rota base
-public class AtividadeController { // Classe de controller
+@RestController
+@RequestMapping("/api/atividades")
+public class AtividadeController {
 
-    private final AtividadeService atividadeService; // Dependência do serviço
+    private final AtividadeService atividadeService;
 
-    @Autowired // Injeta via construtor
+    @Autowired
     public AtividadeController(AtividadeService atividadeService) {
-        this.atividadeService = atividadeService; // Atribuição
+        this.atividadeService = atividadeService;
     }
 
-    @GetMapping // GET /api/clientes
+    @GetMapping
     public ResponseEntity<List<AtividadeModel>> listarTodos() {
-        List<AtividadeModel> lista = atividadeService.listarTodos(); // Busca lista
-        return ResponseEntity.ok(lista); // HTTP 200 com corpo
+        return ResponseEntity.ok(atividadeService.listarTodos());
     }
 
-    @GetMapping("/{id}") // GET /api/clientes/{id}
-    public ResponseEntity<Optional<AtividadeModel>> buscarPorId(@PathVariable int id) {
-        Optional<Optional<AtividadeModel>> optional = atividadeService.buscarPorId(id); // Busca por ID
-        return optional
-                .map(ResponseEntity::ok) // Se presente, 200 OK
-                .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
+    @GetMapping("/{id}")
+    public ResponseEntity<AtividadeModel> buscarPorId(@PathVariable int id) {
+        return atividadeService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping // POST /api/clientes
+    @PostMapping
     public ResponseEntity<AtividadeModel> criar(@RequestBody AtividadeModel atividadeModel) {
-        AtividadeModel criado = atividadeService.criar(atividadeModel); // Cria cliente
-        URI location = URI.create("/api/atividades/" + criado.getId()); // URI do recurso
-        return ResponseEntity.created(location).body(criado); // HTTP 201 Created
+        AtividadeModel criado = atividadeService.criar(atividadeModel);
+        URI location = URI.create("/api/atividades/" + criado.getId());
+        return ResponseEntity.created(location).body(criado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AtividadeModel> atualizar(@PathVariable int id,
-                                                  @RequestBody AtividadeModel atividadeModel) {
-        AtividadeModel atualizado = atividadeService.atualizar(id, atividadeModel); // Atualiza
-        return ResponseEntity.ok(atualizado); // HTTP 200 OK
+    public ResponseEntity<AtividadeModel> atualizar(@PathVariable int id, @RequestBody AtividadeModel atividadeModel) {
+        return ResponseEntity.ok(atividadeService.atualizar(id, atividadeModel));
     }
 
-    @DeleteMapping("/{id}") // DELETE /api/clientes/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable int id) {
-        atividadeService.deletar(id); // Deleta recurso
-        return ResponseEntity.noContent().build(); // HTTP 204 No Content
+        atividadeService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
-
 }

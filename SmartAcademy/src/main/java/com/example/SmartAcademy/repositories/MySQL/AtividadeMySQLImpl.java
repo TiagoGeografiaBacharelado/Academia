@@ -1,8 +1,7 @@
 package com.example.SmartAcademy.repositories.MySQL;
 
-import com.example.SmartAcademy.entities.Plano;
-import com.example.SmartAcademy.interfaces.PlanoRepository;
-import com.example.SmartAcademy.models.PlanoModel;
+import com.example.SmartAcademy.interfaces.AtividadeRepository;
+import com.example.SmartAcademy.models.AtividadeModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -10,71 +9,45 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 @Transactional
-public class AtividadeMySQLImpl implements PlanoRepository {
+public class AtividadeMySQLImpl implements AtividadeRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<PlanoModel> buscarTodos() {
-        List<Plano> planos = entityManager.createQuery("SELECT p FROM Plano p", Plano.class).getResultList();
-        return planos.stream().map(this::toModel).collect(Collectors.toList());
+    public Optional<AtividadeModel> buscarPorCodigo(int id) {
+        AtividadeModel atividade = entityManager.find(AtividadeModel.class, id);
+        return Optional.ofNullable(atividade);
     }
 
     @Override
-    public Optional<PlanoModel> buscarPorCodigo(int id) {
-        Plano plano = entityManager.find(Plano.class, id);
-        return plano != null ? Optional.of(toModel(plano)) : Optional.empty();
+    public List<AtividadeModel> buscarTodos() {
+        return entityManager.createQuery("SELECT a FROM AtividadeModel a", AtividadeModel.class).getResultList();
     }
 
     @Override
-    public Optional<PlanoModel> buscarPorCpf(String cpf) {
-        List<Plano> resultados = entityManager.createQuery(
-                        "SELECT p FROM Plano p WHERE p.descricao LIKE :cpf", Plano.class)
-                .setParameter("cpf", "%" + cpf + "%") // Exemplo: filtro fictício
-                .getResultList();
-
-        return resultados.isEmpty() ? Optional.empty() : Optional.of(toModel(resultados.get(0)));
+    public void adicionar(AtividadeModel atividadeModel) {
+        entityManager.persist(atividadeModel);
     }
 
     @Override
-    public void adicionar(PlanoModel dto) {
-        Plano plano = toEntity(dto);
-        entityManager.persist(plano);
-    }
-
-    @Override
-    public void atualizar(PlanoModel dto) {
-        Plano plano = toEntity(dto);
-        entityManager.merge(plano);
+    public void atualizar(AtividadeModel atividadeModel) {
+        entityManager.merge(atividadeModel);
     }
 
     @Override
     public void remover(int id) {
-        Plano plano = entityManager.find(Plano.class, id);
-        if (plano != null) {
-            entityManager.remove(plano);
+        AtividadeModel atividade = entityManager.find(AtividadeModel.class, id);
+        if (atividade != null) {
+            entityManager.remove(atividade);
         }
     }
 
-    private PlanoModel toModel(Plano plano) {
-        PlanoModel model = new PlanoModel();
-        model.setId(plano.getId());
-        model.setNome(plano.getNome());
-        model.setDescricao(plano.getDescricao());
-        return model;
-    }
-
-
-    private Plano toEntity(PlanoModel model) {
-        Plano plano = new Plano();
-        plano.setId(model.getId());
-        plano.setNome(model.getNome());
-        plano.setDescricao(model.getDescricao());
-        return plano;
+    @Override
+    public Optional<AtividadeModel> buscarPorCpf(String cpf) {
+        return Optional.empty();
     }
 }

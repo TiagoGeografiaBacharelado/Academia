@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
+/**
+ * Entidade JPA representando uma atividade da academia.
+ */
 @Entity
 @Table(name = "atividades")
 @Getter
@@ -11,8 +14,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Atividade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "atividade_id")
     private int id;
 
     @Column(nullable = false, length = 100)
@@ -24,7 +29,6 @@ public class Atividade {
     @Column(name = "duracao_minutos")
     private int duracaoMinutos;
 
-    @Column(name = "horario", nullable = true)
+    @Column(name = "horario")
     private LocalDateTime horario;
 }
-

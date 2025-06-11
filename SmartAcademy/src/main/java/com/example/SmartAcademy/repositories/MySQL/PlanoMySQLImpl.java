@@ -32,14 +32,15 @@ public class PlanoMySQLImpl implements PlanoRepository {
     }
 
     @Override
-    public Optional<PlanoModel> buscarPorCpf(String cpf) {
+    public Optional<PlanoModel> buscarPorCpf(String descricaoParcial) {
         List<Plano> resultados = entityManager.createQuery(
-                        "SELECT p FROM Plano p WHERE p.descricao LIKE :cpf", Plano.class)
-                .setParameter("cpf", "%" + cpf + "%") // Exemplo: filtro fictício
+                        "SELECT p FROM Plano p WHERE p.descricao LIKE :desc", Plano.class)
+                .setParameter("desc", "%" + descricaoParcial + "%")
                 .getResultList();
 
         return resultados.isEmpty() ? Optional.empty() : Optional.of(toModel(resultados.get(0)));
     }
+
 
     @Override
     public void adicionar(PlanoModel dto) {
