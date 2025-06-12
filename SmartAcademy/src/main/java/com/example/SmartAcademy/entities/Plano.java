@@ -15,7 +15,7 @@ public class Plano {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "plano_id") // Corrigido para bater com o JoinColumn de AtividadePlano
+    @Column(name = "plano_id")
     private int id;
 
     @Column(nullable = false, length = 100)

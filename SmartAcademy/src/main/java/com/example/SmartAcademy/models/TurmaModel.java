@@ -8,6 +8,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TurmaModel {
+
     private Long idTurma;
     private LocalTime horario;
     private Long idSala;

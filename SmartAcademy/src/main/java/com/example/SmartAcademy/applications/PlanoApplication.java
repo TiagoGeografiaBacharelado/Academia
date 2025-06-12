@@ -20,14 +20,13 @@ public class PlanoApplication {
         this.planoService = planoService;
     }
 
-    // GET /api/clientes
+
     @GetMapping
     public ResponseEntity<List<PlanoModel>> listarTodos() {
         List<PlanoModel> planos = planoService.listarTodos();
         return ResponseEntity.ok(planos);
     }
 
-    // GET /api/clientes/{id}
     @GetMapping("/{id}")
     public ResponseEntity<PlanoModel> buscarPorId(@PathVariable int id) {
         return planoService.buscarPorId(id)
@@ -35,14 +34,12 @@ public class PlanoApplication {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // POST /api/clientes
     @PostMapping
     public ResponseEntity<PlanoModel> criar(@RequestBody PlanoModel planoModel) {
         PlanoModel criado = planoService.criar(planoModel);
         return ResponseEntity.ok(criado);
     }
 
-    // PUT /api/clientes/{id}
     @PutMapping("/{id}")
     public ResponseEntity<PlanoModel> atualizar(@PathVariable int id,
                                                 @RequestBody PlanoModel planoModel) {
@@ -50,7 +47,7 @@ public class PlanoApplication {
         return ResponseEntity.ok(atualizado);
     }
 
-    // DELETE /api/clientes/{id}
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable int id) {
         planoService.deletar(id);

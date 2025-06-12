@@ -1,58 +1,56 @@
-package com.example.SmartAcademy.services; // Pacote de serviços
+package com.example.SmartAcademy.services;
 
-import com.example.SmartAcademy.interfaces.PlanoRepository; // Importa interface de repositório
-import com.example.SmartAcademy.models.PlanoModel; // Importa modelo DTO
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.stereotype.Service; // Marca como serviço
-import org.springframework.transaction.annotation.Transactional; // Transações
+import com.example.SmartAcademy.interfaces.PlanoRepository;
+import com.example.SmartAcademy.models.PlanoModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.util.List;
+import java.util.Optional;
 
-@Service // Define bean de serviço
-@Transactional // Gerencia transações automaticamente
-public class PlanoService { // Classe de serviço
+@Service
+@Transactional
+public class PlanoService {
 
-    private final PlanoRepository planoRepository; // Dependência do repositório
+    private final PlanoRepository planoRepository;
 
-    @Autowired // Injeta via construtor
+    @Autowired
     public PlanoService(PlanoRepository planoRepository) {
-        this.planoRepository = planoRepository; // Atribuição
+        this.planoRepository = planoRepository;
     }
 
-    public List<PlanoModel> listarTodos() { // Lista todos clientes
-        return planoRepository.buscarTodos(); // Delegação
+    public List<PlanoModel> listarTodos() {
+        return planoRepository.buscarTodos();
     }
 
-    public Optional<PlanoModel> buscarPorId(int id) { // Busca por ID
-        return planoRepository.buscarPorCodigo(id); // Delegação
+    public Optional<PlanoModel> buscarPorId(int id) {
+        return planoRepository.buscarPorCodigo(id);
     }
 
-
-    public PlanoModel atualizar(int id, PlanoModel dto) { // Atualiza cliente existente
-        Optional<PlanoModel> existente = planoRepository.buscarPorCodigo(id); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id); // Erro
+    public PlanoModel atualizar(int id, PlanoModel dto) {
+        Optional<PlanoModel> existente = planoRepository.buscarPorCodigo(id);
+        if (existente.isEmpty()) {
+            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id);
         }
-        dto.setId(id); // Atribui ID ao DTO
-        planoRepository.atualizar(dto); // Persiste atualização
-        return dto; // Retorna DTO
+        dto.setId(id);
+        planoRepository.atualizar(dto);
+        return dto;
     }
 
-    public PlanoModel criar(PlanoModel dto) { // Cria novo cliente
-        if (planoRepository.buscarPorCpf(dto.getCpf()).isPresent()) { // Verifica CPF duplicado
-            throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf()); // Exceção
+    public PlanoModel criar(PlanoModel dto) {
+        if (planoRepository.buscarPorCpf(dto.getCpf()).isPresent()) {
+            throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf());
         }
-        planoRepository.adicionar(dto); // Persiste
-        return dto; // Retorna DTO (poderia buscar ID atualizado)
+        planoRepository.adicionar(dto);
+        return dto;
     }
 
-    public void deletar(int id) { // Deleta cliente
-        Optional<PlanoModel> existente = planoRepository.buscarPorCodigo(id); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id); // Erro
+    public void deletar(int id) {
+        Optional<PlanoModel> existente = planoRepository.buscarPorCodigo(id);
+        if (existente.isEmpty()) {
+            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id);
         }
-        planoRepository.remover(id); // Remove
+        planoRepository.remover(id);
     }
-
 }

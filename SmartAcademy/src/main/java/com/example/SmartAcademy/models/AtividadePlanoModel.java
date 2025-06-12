@@ -8,7 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "atividade_plano")

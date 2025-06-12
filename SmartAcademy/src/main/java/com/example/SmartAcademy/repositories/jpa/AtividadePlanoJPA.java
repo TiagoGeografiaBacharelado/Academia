@@ -1,11 +1,11 @@
-package com.example.SmartAcademy.repositories.jpa; // Pacote JPA
+package com.example.SmartAcademy.repositories.jpa;
 
-import com.example.SmartAcademy.entities.AtividadePlano; // Importa entidade Cliente
-import org.springframework.data.jpa.repository.JpaRepository; // Interface JpaRepository
-import org.springframework.stereotype.Repository; // Marca como Repository
-import java.util.Optional; // Optional para buscas
+import com.example.SmartAcademy.entities.AtividadePlano;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-@Repository // Sinaliza componente Spring
-public interface AtividadePlanoJPA extends JpaRepository<AtividadePlano, Long> { // Extende JpaRepository
-    Optional<AtividadePlano> findByCpf(String cpf); // Método gerado para buscar por CPF
+@Repository
+public interface AtividadePlanoJPA extends JpaRepository<AtividadePlano, Long> {
+    Optional<AtividadePlano> findByCpf(String cpf);
 }

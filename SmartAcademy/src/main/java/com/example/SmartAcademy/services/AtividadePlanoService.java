@@ -1,42 +1,42 @@
-package com.example.SmartAcademy.services; // Pacote de serviços
+package com.example.SmartAcademy.services;
 
-import com.example.SmartAcademy.interfaces.AtividadePlanoRepository; // Importa interface de repositório
-import com.example.SmartAcademy.models.AtividadePlanoModel; // Importa modelo DTO
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.stereotype.Service; // Marca como serviço
-import org.springframework.transaction.annotation.Transactional; // Transações
+import com.example.SmartAcademy.interfaces.AtividadePlanoRepository;
+import com.example.SmartAcademy.models.AtividadePlanoModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.util.List;
+import java.util.Optional;
 
-@Service // Define bean de serviço
-@Transactional // Gerencia transações automaticamente
-public class AtividadePlanoService { // Classe de serviço
+@Service
+@Transactional
+public class AtividadePlanoService {
 
-    private final AtividadePlanoRepository atividadePlanoRepository; // Dependência do repositório
+    private final AtividadePlanoRepository atividadePlanoRepository;
 
-    @Autowired // Injeta via construtor
+    @Autowired
     public AtividadePlanoService(AtividadePlanoRepository atividadePlanoRepository) {
-        this.atividadePlanoRepository = atividadePlanoRepository; // Atribuição
+        this.atividadePlanoRepository = atividadePlanoRepository;
     }
 
-    public List<AtividadePlanoModel> listarTodos() { // Lista todos clientes
-        return atividadePlanoRepository.buscarTodos(); // Delegação
+    public List<AtividadePlanoModel> listarTodos() {
+        return atividadePlanoRepository.buscarTodos();
     }
 
-    public Optional<Optional<AtividadePlanoModel>> buscarPorId(int id) { // Busca por ID
-        return Optional.ofNullable(atividadePlanoRepository.buscarPorCodigo(id)); // Delegação
+    public Optional<Optional<AtividadePlanoModel>> buscarPorId(int id) {
+        return Optional.ofNullable(atividadePlanoRepository.buscarPorCodigo(id));
     }
 
 
-    public AtividadePlanoModel atualizar(int id, AtividadePlanoModel dto) { // Atualiza cliente existente
-        Optional<AtividadePlanoModel> existente = atividadePlanoRepository.buscarPorCodigo(id); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id); // Erro
+    public AtividadePlanoModel atualizar(int id, AtividadePlanoModel dto) {
+        Optional<AtividadePlanoModel> existente = atividadePlanoRepository.buscarPorCodigo(id);
+        if (existente.isEmpty()) {
+            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id);
         }
-        dto.setId(id); // Atribui ID ao DTO
-        atividadePlanoRepository.atualizar(dto); // Persiste atualização
-        return dto; // Retorna DTO
+        dto.setId(id);
+        atividadePlanoRepository.atualizar(dto);
+        return dto;
     }
 
     public AtividadePlanoModel criar(AtividadePlanoModel dto) {
@@ -48,12 +48,12 @@ public class AtividadePlanoService { // Classe de serviço
         return dto;
     }
 
-    public void deletar(int id) { // Deleta cliente
-        Optional<AtividadePlanoModel> existente = atividadePlanoRepository.buscarPorCodigo(id); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id); // Erro
+    public void deletar(int id) {
+        Optional<AtividadePlanoModel> existente = atividadePlanoRepository.buscarPorCodigo(id);
+        if (existente.isEmpty()) {
+            throw new IllegalArgumentException("Cliente não encontrado com ID: " + id);
         }
-        atividadePlanoRepository.remover(id); // Remove
+        atividadePlanoRepository.remover(id);
     }
 
 

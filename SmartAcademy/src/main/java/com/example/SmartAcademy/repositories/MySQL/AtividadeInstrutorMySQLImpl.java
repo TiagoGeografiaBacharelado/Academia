@@ -66,7 +66,6 @@ public class AtividadeInstrutorMySQLImpl implements AtividadeInstrutorRepository
         return lista.isEmpty() ? Optional.empty() : Optional.of(toModel(lista.get(0)));
     }
 
-    // Converte entidade para model (Entity → DTO)
     private AtividadeInstrutorModel toModel(AtividadeInstrutor entidade) {
         AtividadeInstrutorModel model = new AtividadeInstrutorModel();
         model.setId(entidade.getId());
@@ -79,17 +78,13 @@ public class AtividadeInstrutorMySQLImpl implements AtividadeInstrutorRepository
         if (entidade.getAtividade() != null) {
             model.setNomeAtividade(entidade.getAtividade().getNome());
             model.setDescricao(entidade.getAtividade().getDescricao());
-
-            // Converte LocalDateTime para String (formato ISO)
             model.setHorario(entidade.getAtividade().getHorario().toString());
-
             model.setDuracaoMinutos(entidade.getAtividade().getDuracaoMinutos());
         }
 
         return model;
     }
 
-    // Converte model para entidade (DTO → Entity)
     private AtividadeInstrutor toEntity(AtividadeInstrutorModel model) {
         AtividadeInstrutor entidade = new AtividadeInstrutor();
         entidade.setId(model.getId());
@@ -98,14 +93,10 @@ public class AtividadeInstrutorMySQLImpl implements AtividadeInstrutorRepository
         instrutor.setCpf(model.getCpf());
         instrutor.setNome(model.getNomeInstrutor());
         entidade.setInstrutor(instrutor);
-
         Atividade atividade = new Atividade();
         atividade.setNome(model.getNomeAtividade());
         atividade.setDescricao(model.getDescricao());
-
-        // Converte String para LocalDateTime
         atividade.setHorario(LocalDateTime.parse(model.getHorario()));
-
         atividade.setDuracaoMinutos(model.getDuracaoMinutos());
         entidade.setAtividade(atividade);
 

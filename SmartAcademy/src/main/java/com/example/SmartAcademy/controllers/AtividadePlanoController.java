@@ -1,57 +1,57 @@
-package com.example.SmartAcademy.controllers; // Pacote de controllers
+package com.example.SmartAcademy.controllers;
 
-import com.example.SmartAcademy.models.AtividadePlanoModel; // DTO para transporte
-import com.example.SmartAcademy.services.AtividadePlanoService; // Serviço de negócio
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.http.ResponseEntity; // Respostas HTTP
-import org.springframework.web.bind.annotation.*; // Anotações REST
+import com.example.SmartAcademy.models.AtividadePlanoModel;
+import com.example.SmartAcademy.services.AtividadePlanoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.net.URI; // Para header Location
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
-@RestController // Define controller REST
-@RequestMapping("/api/atividade_plano") // Mapeia rota base
-public class AtividadePlanoController { // Classe de controller
+@RestController
+@RequestMapping("/api/atividade_plano")
+public class AtividadePlanoController {
 
-    private final AtividadePlanoService atividadePlanoService; // Dependência do serviço
+    private final AtividadePlanoService atividadePlanoService;
 
-    @Autowired // Injeta via construtor
+    @Autowired
     public AtividadePlanoController(AtividadePlanoService atividadePlanoService) {
-        this.atividadePlanoService = atividadePlanoService; // Atribuição
+        this.atividadePlanoService = atividadePlanoService;
     }
 
-    @GetMapping // GET /api/atividade-plano
+    @GetMapping
     public ResponseEntity<List<AtividadePlanoModel>> listarTodos() {
-        List<AtividadePlanoModel> lista = atividadePlanoService.listarTodos(); // Busca lista
-        return ResponseEntity.ok(lista); // HTTP 200 com corpo
+        List<AtividadePlanoModel> lista = atividadePlanoService.listarTodos();
+        return ResponseEntity.ok(lista);
     }
 
-    @GetMapping("/{id}") // GET /api/atividade-plano/{id}
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<AtividadePlanoModel>> buscarPorId(@PathVariable int id) {
-        Optional<Optional<AtividadePlanoModel>> optional = atividadePlanoService.buscarPorId(id); // Busca por ID
+        Optional<Optional<AtividadePlanoModel>> optional = atividadePlanoService.buscarPorId(id);
         return optional
-                .map(ResponseEntity::ok) // Se presente, 200 OK
-                .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping // POST /api/atividade-plano
+    @PostMapping
     public ResponseEntity<AtividadePlanoModel> criar(@RequestBody AtividadePlanoModel model) {
-        AtividadePlanoModel criado = atividadePlanoService.criar(model); // Cria associação
-        URI location = URI.create("/api/atividade_plano/" + criado.getId()); // URI do recurso
-        return ResponseEntity.created(location).body(criado); // HTTP 201 Created
+        AtividadePlanoModel criado = atividadePlanoService.criar(model);
+        URI location = URI.create("/api/atividade_plano/" + criado.getId());
+        return ResponseEntity.created(location).body(criado);
     }
 
-    @PutMapping("/{id}") // PUT /api/atividade-plano/{id}
+    @PutMapping("/{id}")
     public ResponseEntity<AtividadePlanoModel> atualizar(@PathVariable int id,
                                                          @RequestBody AtividadePlanoModel model) {
-        AtividadePlanoModel atualizado = atividadePlanoService.atualizar(id, model); // Atualiza
-        return ResponseEntity.ok(atualizado); // HTTP 200 OK
+        AtividadePlanoModel atualizado = atividadePlanoService.atualizar(id, model);
+        return ResponseEntity.ok(atualizado);
     }
 
-    @DeleteMapping("/{id}") // DELETE /api/atividade-plano/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable int id) {
-        atividadePlanoService.deletar(id); // Deleta recurso
-        return ResponseEntity.noContent().build(); // HTTP 204 No Content
+        atividadePlanoService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

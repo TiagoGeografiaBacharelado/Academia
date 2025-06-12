@@ -12,19 +12,9 @@ import java.util.Optional;
 public interface PlanoJPA extends JpaRepository<Plano, Long> {
 
     Optional<Plano> findByNome(String nome);
-
-    // Lista planos que contenham parte do nome (ignora maiúsculas/minúsculas)
     List<Plano> findByNomeContainingIgnoreCase(String nome);
-
-    // Busca planos com preço igual ou menor que o valor informado
     List<Plano> findByPrecoLessThanEqual(BigDecimal preco);
-
-    // Busca planos com preço igual ou maior que o valor informado
     List<Plano> findByPrecoGreaterThanEqual(BigDecimal preco);
-
-    // Busca por descrição exata
     Optional<Plano> findByDescricao(String descricao);
-
-    // Lista planos que contenham um trecho na descrição (ignora maiúsculas/minúsculas)
     List<Plano> findByDescricaoContainingIgnoreCase(String descricao);
 }

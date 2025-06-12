@@ -8,7 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "atividade_instrutor")
@@ -16,7 +15,7 @@ public class AtividadeInstrutorModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_instrutor") // Este nome deve bater com a chave primária da tabela, mas o ideal é ser "id"
+    @Column(name = "id_instrutor")
     private long id;
 
     @Column(name = "atividade_nome")
