@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
-/**
- * Entidade JPA representando uma atividade da academia.
- */
+
 @Entity
 @Table(name = "atividades")
 @Getter

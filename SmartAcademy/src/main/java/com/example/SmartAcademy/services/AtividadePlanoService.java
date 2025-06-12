@@ -39,12 +39,13 @@ public class AtividadePlanoService { // Classe de serviço
         return dto; // Retorna DTO
     }
 
-    public AtividadePlanoModel criar(AtividadePlanoModel dto) { // Cria novo cliente
-        if (atividadePlanoRepository.buscarPorCpf(dto.getCpf()).isPresent()) { // Verifica CPF duplicado
-            throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf()); // Exceção
+    public AtividadePlanoModel criar(AtividadePlanoModel dto) {
+        List<AtividadePlanoModel> lista = atividadePlanoRepository.buscarPorCpf(dto.getCpf());
+        if (!lista.isEmpty()) {
+            throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf());
         }
-        atividadePlanoRepository.adicionar(dto); // Persiste
-        return dto; // Retorna DTO (poderia buscar ID atualizado)
+        atividadePlanoRepository.adicionar(dto);
+        return dto;
     }
 
     public void deletar(int id) { // Deleta cliente

@@ -1,57 +1,52 @@
-package com.example.SmartAcademy.controllers; // Pacote de controllers
+package com.example.SmartAcademy.controllers;
 
-import com.example.SmartAcademy.models.AtividadeInstrutorModel; // DTO para transporte
-import com.example.SmartAcademy.services.AtividadeInstrutorService; // Serviço de negócio
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.http.ResponseEntity; // Respostas HTTP
-import org.springframework.web.bind.annotation.*; // Anotações REST
+import com.example.SmartAcademy.models.AtividadeInstrutorModel;
+import com.example.SmartAcademy.services.AtividadeInstrutorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.net.URI; // Para header Location
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.net.URI;
+import java.util.List;
 
-@RestController // Define controller REST
-@RequestMapping("/api/atividade_instrutor") // Mapeia rota base
-public class AtividadeInstrutorController { // Classe de controller
+@RestController
+@RequestMapping("/api/atividade-instrutores")
+public class AtividadeInstrutorController {
 
-    private final AtividadeInstrutorService atividadeInstrutorService; // Dependência do serviço
+    private final AtividadeInstrutorService atividadeInstrutorService;
 
     @Autowired
     public AtividadeInstrutorController(AtividadeInstrutorService atividadeInstrutorService) {
-        this.atividadeInstrutorService = atividadeInstrutorService; // Atribuição
+        this.atividadeInstrutorService = atividadeInstrutorService;
     }
 
-    @GetMapping // GET /api/atividade-instrutor
+    @GetMapping
     public ResponseEntity<List<AtividadeInstrutorModel>> listarTodos() {
-        List<AtividadeInstrutorModel> lista = atividadeInstrutorService.listarTodos(); // Busca lista
-        return ResponseEntity.ok(lista); // HTTP 200 com corpo
+        return ResponseEntity.ok(atividadeInstrutorService.listarTodos());
     }
 
-    @GetMapping("/{id}") // GET /api/atividade-instrutor/{id}
+    @GetMapping("/{id}")
     public ResponseEntity<AtividadeInstrutorModel> buscarPorId(@PathVariable int id) {
-        Optional<AtividadeInstrutorModel> optional = atividadeInstrutorService.buscarPorId(id); // Busca por ID
-        return optional
-                .map(ResponseEntity::ok) // Se presente, 200 OK
-                .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
+        return atividadeInstrutorService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping // POST /api/atividade-instrutor
+    @PostMapping
     public ResponseEntity<AtividadeInstrutorModel> criar(@RequestBody AtividadeInstrutorModel model) {
-        AtividadeInstrutorModel criado = atividadeInstrutorService.criar(model); // Cria associação
-        URI location = URI.create("/api/atividade_instrutor/" + criado.getId()); // URI do recurso
-        return ResponseEntity.created(location).body(criado); // HTTP 201 Created
+        AtividadeInstrutorModel criado = atividadeInstrutorService.criar(model);
+        URI location = URI.create("/api/atividade-instrutores/" + criado.getId());
+        return ResponseEntity.created(location).body(criado);
     }
 
-    @PutMapping("/{id}") // PUT /api/atividade-instrutor/{id}
-    public ResponseEntity<AtividadeInstrutorModel> atualizar(@PathVariable int id,
-                                                             @RequestBody AtividadeInstrutorModel model) {
-        AtividadeInstrutorModel atualizado = atividadeInstrutorService.atualizar(id, model); // Atualiza
-        return ResponseEntity.ok(atualizado); // HTTP 200 OK
+    @PutMapping("/{id}")
+    public ResponseEntity<AtividadeInstrutorModel> atualizar(@PathVariable int id, @RequestBody AtividadeInstrutorModel model) {
+        return ResponseEntity.ok(atividadeInstrutorService.atualizar(id, model));
     }
 
-    @DeleteMapping("/{id}") // DELETE /api/atividade-instrutor/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable int id) {
-        atividadeInstrutorService.deletar(id); // Deleta recurso
-        return ResponseEntity.noContent().build(); // HTTP 204 No Content
+        atividadeInstrutorService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

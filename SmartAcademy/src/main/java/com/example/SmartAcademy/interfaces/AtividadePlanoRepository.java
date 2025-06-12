@@ -11,5 +11,6 @@ public interface AtividadePlanoRepository {
     void adicionar(AtividadePlanoModel atividadePlanoModel);
     void atualizar(AtividadePlanoModel atividadePlanoModel);
     void remover(int id);
-    Optional<AtividadeInstrutorModel> buscarPorCpf(String cpf);
+    List<AtividadePlanoModel> buscarPorCpf(String cpf);
+
 }

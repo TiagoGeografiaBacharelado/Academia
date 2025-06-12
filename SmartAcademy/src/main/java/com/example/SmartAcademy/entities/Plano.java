@@ -15,6 +15,7 @@ public class Plano {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "plano_id") // Corrigido para bater com o JoinColumn de AtividadePlano
     private int id;
 
     @Column(nullable = false, length = 100)
@@ -25,5 +26,4 @@ public class Plano {
 
     @Column(columnDefinition = "TEXT")
     private String descricao;
-
 }

@@ -3,13 +3,12 @@ package com.example.SmartAcademy.applications;
 import com.example.SmartAcademy.models.AtividadeInstrutorModel;
 import com.example.SmartAcademy.services.AtividadeInstrutorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/atividade_instrutor/app")
+@Component
 public class AtividadeInstrutorApplication {
 
     private final AtividadeInstrutorService atividadeInstrutorService;
@@ -19,26 +18,23 @@ public class AtividadeInstrutorApplication {
         this.atividadeInstrutorService = atividadeInstrutorService;
     }
 
-
-    @GetMapping
-    public ResponseEntity<List<AtividadeInstrutorModel>> listarTodos() {
-        List<AtividadeInstrutorModel> clientes = atividadeInstrutorService.listarTodos();
-        return ResponseEntity.ok(clientes);
+    public List<AtividadeInstrutorModel> listarTodos() {
+        return atividadeInstrutorService.listarTodos();
     }
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<AtividadeInstrutorModel> buscarPorId(@PathVariable int id) {
-        return atividadeInstrutorService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public Optional<AtividadeInstrutorModel> buscarPorId(int id) {
+        return atividadeInstrutorService.buscarPorId(id);
     }
 
+    public AtividadeInstrutorModel atualizar(int id, AtividadeInstrutorModel model) {
+        return atividadeInstrutorService.atualizar(id, model);
+    }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable int id) {
+    public void deletar(int id) {
         atividadeInstrutorService.deletar(id);
-        return ResponseEntity.noContent().build();
+    }
+
+    public AtividadeInstrutorModel criar(AtividadeInstrutorModel model) {
+        return atividadeInstrutorService.criar(model);
     }
 }

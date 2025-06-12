@@ -1,59 +1,56 @@
-package com.example.SmartAcademy.services; // Pacote de serviços
+package com.example.SmartAcademy.services;
 
-import com.example.SmartAcademy.interfaces.AtividadeInstrutorRepository; // Importa interface de repositório
-import com.example.SmartAcademy.models.AtividadeInstrutorModel; // Importa modelo DTO
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.stereotype.Service; // Marca como serviço
-import org.springframework.transaction.annotation.Transactional; // Transações
+import com.example.SmartAcademy.interfaces.AtividadeInstrutorRepository;
+import com.example.SmartAcademy.models.AtividadeInstrutorModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.util.List;
+import java.util.Optional;
 
-@Service // Define bean de serviço
-@Transactional // Gerencia transações automaticamente
-public class AtividadeInstrutorService { // Classe de serviço
+@Service
+@Transactional
+public class AtividadeInstrutorService {
 
     private final AtividadeInstrutorRepository atividadeInstrutorRepository;
 
-    @Autowired // Injeta via construtor
+    @Autowired
     public AtividadeInstrutorService(AtividadeInstrutorRepository atividadeInstrutorRepository) {
-        this.atividadeInstrutorRepository = atividadeInstrutorRepository; // Atribuição
+        this.atividadeInstrutorRepository = atividadeInstrutorRepository;
     }
 
-    public List<AtividadeInstrutorModel> listarTodos() { // Lista todos clientes
-        return atividadeInstrutorRepository.buscarTodos(); // Delegação
+    public List<AtividadeInstrutorModel> listarTodos() {
+        return atividadeInstrutorRepository.buscarTodos();
     }
 
-    public Optional<AtividadeInstrutorModel> buscarPorId(int id) { // Busca por ID
-        return atividadeInstrutorRepository.buscarPorCodigo(id); // Delegação
+    public Optional<AtividadeInstrutorModel> buscarPorId(int id) {
+        return atividadeInstrutorRepository.buscarPorCodigo(id);
     }
 
-    public AtividadeInstrutorModel criar(AtividadeInstrutorModel dto) { // Cria novo cliente
-        if (atividadeInstrutorRepository.buscarPorCpf(dto.getCpf()).isPresent()) { // Verifica CPF duplicado
-            throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf()); // Exceção
+    public AtividadeInstrutorModel criar(AtividadeInstrutorModel dto) {
+        if (atividadeInstrutorRepository.buscarPorCpf(dto.getCpf()).isPresent()) {
+            throw new IllegalArgumentException("CPF já cadastrado: " + dto.getCpf());
         }
-        atividadeInstrutorRepository.adicionar(dto); // Persiste
-        return dto; // Retorna DTO (poderia buscar ID atualizado)
+        atividadeInstrutorRepository.adicionar(dto);
+        return dto;
     }
 
-    public AtividadeInstrutorModel atualizar(int id, AtividadeInstrutorModel dto) { // Atualiza cliente existente
-        Optional<AtividadeInstrutorModel> existente = atividadeInstrutorRepository.buscarPorCodigo(id); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("atividade não encontrado com ID: " + id); // Erro
+    public AtividadeInstrutorModel atualizar(int id, AtividadeInstrutorModel dto) {
+        Optional<AtividadeInstrutorModel> existente = atividadeInstrutorRepository.buscarPorCodigo(id);
+        if (existente.isEmpty()) {
+            throw new IllegalArgumentException("AtividadeInstrutor não encontrado com ID: " + id);
         }
-        dto.setId(id); // Atribui ID ao DTO
-        atividadeInstrutorRepository.atualizar(dto); // Persiste atualização
-        return dto; // Retorna DTO
+        dto.setId(id);
+        atividadeInstrutorRepository.atualizar(dto);
+        return dto;
     }
 
-    public void deletar(int id) { // Deleta cliente
-        Optional<AtividadeInstrutorModel> existente = atividadeInstrutorRepository.buscarPorCodigo(id); // Verifica existência
-        if (existente.isEmpty()) { // Se não existe
-            throw new IllegalArgumentException("atividade não encontrado com ID: " + id); // Erro
+    public void deletar(int id) {
+        Optional<AtividadeInstrutorModel> existente = atividadeInstrutorRepository.buscarPorCodigo(id);
+        if (existente.isEmpty()) {
+            throw new IllegalArgumentException("AtividadeInstrutor não encontrado com ID: " + id);
         }
-        atividadeInstrutorRepository.remover(id); // Remove
+        atividadeInstrutorRepository.remover(id);
     }
-
 }
-
-

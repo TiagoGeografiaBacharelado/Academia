@@ -1,6 +1,6 @@
 package com.example.SmartAcademy.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.*; // Apenas se estiver usando a mesma tabela, senão remova @Entity
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "atividade_instrutor")
@@ -16,8 +16,8 @@ public class AtividadeInstrutorModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "instrutor_id")
-    private int id;
+    @Column(name = "id_instrutor") // Este nome deve bater com a chave primária da tabela, mas o ideal é ser "id"
+    private long id;
 
     @Column(name = "atividade_nome")
     private String nomeAtividade;

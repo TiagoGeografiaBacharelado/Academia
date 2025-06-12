@@ -13,17 +13,13 @@ public class AtividadeInstrutor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_atividade", nullable = false)
+    @JoinColumn(name = "atividade_id", nullable = false)
     private Atividade atividade;
 
     @ManyToOne
-    @JoinColumn(name = "id_instrutor", nullable = false)
+    @JoinColumn(name = "instrutor_id", nullable = false)
     private Instrutor instrutor;
-
-
 }
-
-

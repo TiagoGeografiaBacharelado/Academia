@@ -5,18 +5,24 @@ import lombok.*;
 
 @Entity
 @Table(name = "atividade_plano")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AtividadePlano {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_atividade", nullable = false)
+    @JoinColumn(name = "atividade_id", nullable = false)
     private Atividade atividade;
 
     @ManyToOne
-    @JoinColumn(name = "id_pagamento", nullable = false)
+    @JoinColumn(name = "plano_id", nullable = false)
     private Plano plano;
+
+    @Column(nullable = false, length = 14) // CPF formatado: 000.000.000-00
+    private String cpf;
 }

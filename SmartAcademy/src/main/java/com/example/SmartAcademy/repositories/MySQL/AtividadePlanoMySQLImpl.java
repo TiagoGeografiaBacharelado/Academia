@@ -78,8 +78,12 @@ public class AtividadePlanoMySQLImpl implements AtividadePlanoRepository {
     }
 
     @Override
-    public Optional<AtividadeInstrutorModel> buscarPorCpf(String cpf) {
-
-        return Optional.empty();
+    public List<AtividadePlanoModel> buscarPorCpf(String cpf) {
+        return entityManager.createQuery(
+                        "SELECT ap FROM AtividadePlanoModel ap WHERE ap.cpf = :cpf", AtividadePlanoModel.class)
+                .setParameter("cpf", cpf)
+                .getResultList();
     }
+
+
 }
