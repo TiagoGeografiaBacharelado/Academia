@@ -1,58 +1,58 @@
-package com.example.SmartAcademy.controllers; // Pacote de controllers
+package com.example.SmartAcademy.controllers;
 
-import com.example.SmartAcademy.models.ClienteModel; // DTO para transporte
-import com.example.SmartAcademy.services.ClienteService; // Serviço de negócio
-import org.springframework.beans.factory.annotation.Autowired; // Injeta dependências
-import org.springframework.http.ResponseEntity; // Respostas HTTP
-import org.springframework.web.bind.annotation.*; // Anotações REST
+import com.example.SmartAcademy.models.ClienteModel;
+import com.example.SmartAcademy.services.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.net.URI; // Para header Location
-import java.util.List; // Listagem
-import java.util.Optional; // Optional
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
-@RestController // Define controller REST
-@RequestMapping("/api/clientes") // Mapeia rota base
-public class ClienteController { // Classe de controller
+@RestController
+@RequestMapping("/api/clientes")
+public class ClienteController {
 
-    private final ClienteService clienteService; // Dependência do serviço
+    private final ClienteService clienteService;
 
-    @Autowired // Injeta via construtor
+    @Autowired
     public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService; // Atribuição
+        this.clienteService = clienteService;
     }
 
-    @GetMapping // GET /api/clientes
+    @GetMapping
     public ResponseEntity<List<ClienteModel>> listarTodos() {
-        List<ClienteModel> lista = clienteService.listarTodos(); // Busca lista
-        return ResponseEntity.ok(lista); // HTTP 200 com corpo
+        List<ClienteModel> lista = clienteService.listarTodos();
+        return ResponseEntity.ok(lista);
     }
 
-    @GetMapping("/{id}") // GET /api/clientes/{id}
+    @GetMapping("/{id}")
     public ResponseEntity<ClienteModel> buscarPorId(@PathVariable Long id) {
-        Optional<ClienteModel> optional = clienteService.buscarPorId(id); // Busca por ID
+        Optional<ClienteModel> optional = clienteService.buscarPorId(id);
         return optional
-                .map(ResponseEntity::ok) // Se presente, 200 OK
-                .orElseGet(() -> ResponseEntity.notFound().build()); // Se ausente, 404
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping // POST /api/clientes
+    @PostMapping
     public ResponseEntity<ClienteModel> criar(@RequestBody ClienteModel clienteModel) {
-        ClienteModel criado = clienteService.criar(clienteModel); // Cria cliente
-        URI location = URI.create("/api/clientes/" + criado.getId()); // URI do recurso
-        return ResponseEntity.created(location).body(criado); // HTTP 201 Created
+        ClienteModel criado = clienteService.criar(clienteModel);
+        URI location = URI.create("/api/clientes/" + criado.getId());
+        return ResponseEntity.created(location).body(criado);
     }
 
-    @PutMapping("/{id}") // PUT /api/clientes/{id}
+    @PutMapping("/{id}")
     public ResponseEntity<ClienteModel> atualizar(@PathVariable Long id,
                                                   @RequestBody ClienteModel clienteModel) {
-        ClienteModel atualizado = clienteService.atualizar(id, clienteModel); // Atualiza
-        return ResponseEntity.ok(atualizado); // HTTP 200 OK
+        ClienteModel atualizado = clienteService.atualizar(id, clienteModel);
+        return ResponseEntity.ok(atualizado);
     }
 
-    @DeleteMapping("/{id}") // DELETE /api/clientes/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        clienteService.deletar(id); // Deleta recurso
-        return ResponseEntity.noContent().build(); // HTTP 204 No Content
+        clienteService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

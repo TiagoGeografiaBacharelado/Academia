@@ -10,24 +10,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "atividade_plano")
 public class AtividadePlanoModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "atividade_plano_id")
     private int id;
     private String cpf;
 
-    @ManyToOne
-    @JoinColumn(name = "atividade_id", referencedColumnName = "atividade_id")
     private AtividadeModel atividade;
 
-    @ManyToOne
-    @JoinColumn(name = "plano_id", referencedColumnName = "planos_id")
     private PlanoModel plano;
 
-    @Column(name = "atividade_plano_observacao")
     private String observacao;
 
 

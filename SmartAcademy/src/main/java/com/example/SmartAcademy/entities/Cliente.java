@@ -1,43 +1,46 @@
-package com.example.SmartAcademy.entities; // Pacote de entidades JPA
+package com.example.SmartAcademy.entities;
 
-import jakarta.persistence.*; // Anotações JPA via Jakarta
-import lombok.*; // Lombok para getters/setters
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Entity // Marca como entidade JPA
-@Table(name = "clientes") // Mapeia tabela 'clientes'
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor // Lombok gera métodos
-public class Cliente { // Classe de entidade Cliente
-    @Id // Define chave primária
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremento
-    private Long id; // Identificador único
+@Entity
+@Table(name = "clientes")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Cliente {
 
-    @Column(nullable = false, length = 100) // Nome obrigatório, tamanho até 100
-    private String nome; // Nome do cliente
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(unique = true, nullable = false, length = 11) // CPF único, obrigatório
-    private String cpf; // CPF do cliente
+    @Column(nullable = false, length = 100)
+    private String nome;
 
-    @Column(length = 200) // Endereço opcional, até 200 chars
-    private String endereco; // Endereço residencial
+    @Column(unique = true, nullable = false, length = 11)
+    private String cpf;
 
-    @Column(length = 100) // Email opcional, até 100 chars
-    private String email; // Email de contato
+    @Column(length = 200)
+    private String endereco;
 
-    @Column(length = 20) // Telefone opcional, até 20 chars
-    private String telefone; // Telefone de contato
+    @Column(length = 100)
+    private String email;
 
-    @Column(name = "data_nascimento") // Coluna personalizada
-    private LocalDateTime dataNascimento; // Data de nascimento sem hora
+    @Column(length = 20)
+    private String telefone;
 
-    @Column(name = "observacao_medica", columnDefinition = "TEXT") // Texto longo
-    private String observacaoMedica; // Observações médicas
+    @Column(name = "data_nascimento")
+    private LocalDateTime dataNascimento;
 
-    @Column // Altura opcional
-    private Float altura; // Altura em metros
+    @Column(name = "observacao_medica", columnDefinition = "TEXT")
+    private String observacaoMedica;
 
-    @Column // Peso opcional
-    private Float peso; // Peso em kg
+    @Column
+    private Float altura;
 
+    @Column
+    private Float peso;
 }

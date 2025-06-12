@@ -10,29 +10,25 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "atividade_instrutor")
+
 public class AtividadeInstrutorModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_instrutor")
     private long id;
 
-    @Column(name = "atividade_nome")
+
     private String nomeAtividade;
 
-    @Column(name = "atividade_cpf")
+
     private String cpf;
 
-    @Column(name = "instrutor_nome")
+
     private String nomeInstrutor;
 
-    @Column(name = "atividade_horario")
+
     private String horario;
 
-    @Column(name = "atividade_descricao")
+
     private String descricao;
 
-    @Column(name = "atividade_duracao_minutos")
     private int duracaoMinutos;
 }

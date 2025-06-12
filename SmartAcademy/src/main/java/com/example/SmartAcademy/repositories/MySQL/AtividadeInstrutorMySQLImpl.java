@@ -60,7 +60,7 @@ public class AtividadeInstrutorMySQLImpl implements AtividadeInstrutorRepository
     public Optional<AtividadeInstrutorModel> buscarPorCpf(String cpf) {
         List<AtividadeInstrutor> lista = entityManager.createQuery(
                         "SELECT ai FROM AtividadeInstrutor ai WHERE ai.instrutor.cpf = :cpf", AtividadeInstrutor.class)
-                .setParameter("cpf", cpf)
+                .setParameter("Cpf", cpf)
                 .getResultList();
 
         return lista.isEmpty() ? Optional.empty() : Optional.of(toModel(lista.get(0)));

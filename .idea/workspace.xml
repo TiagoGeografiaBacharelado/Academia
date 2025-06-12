@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a6d92437-235f-4e0d-80fe-a90243107566" name="Changes" comment="Update">
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/ClienteApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/ClientePlanoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/FormaPagamentoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/UsuarioApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/ClienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/ClientePlanoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/FormaPagamentoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/UsuarioController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/ClientePlano.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/FormaPagamento.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Usuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/ClientePlanoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/ClienteRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/FormaPagamentoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/UsuarioRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/ClienteModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/ClientePlanoModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/FormaPagamentoModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/UsuarioModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/ClienteInterfaceMySQLImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/ClientePlanoInterfaceMySQLImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/FormaPagamentoInterfaceMySQLImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/UsuarioInterfaceMySQLImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/ClienteJPA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/ClientePlanoJPA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/FormaPagamentoJPA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/UsuarioJPA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/ClientePlanoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/ClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/FormaPagamentoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeInstrutorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeInstrutorModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadePlanoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadePlanoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/PlanoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/PlanoModel.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SmartAcademyApplication.executor": "Run",
+    "git-widget-placeholder": "develop2"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\julia\Downloads\IA\Academia\SmartAcademy\src\main\java\com\example\SmartAcademy\services" />
+      <recent name="C:\Users\julia\Downloads\IA\Academia\SmartAcademy\src\main\java\com\example\SmartAcademy\repositories\MySQL" />
+      <recent name="C:\Users\julia\Downloads\IA\Academia\SmartAcademy\src\main\java\com\example\SmartAcademy\repositories\jpa" />
+      <recent name="C:\Users\julia\Downloads\IA\Academia\SmartAcademy\src\main\java\com\example\SmartAcademy\models" />
+      <recent name="C:\Users\julia\Downloads\IA\Academia\SmartAcademy\src\main\java\com\example\SmartAcademy\interfaces" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+  </component>
+</project>

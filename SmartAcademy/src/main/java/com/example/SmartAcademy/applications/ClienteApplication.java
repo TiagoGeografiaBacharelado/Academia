@@ -19,14 +19,14 @@ public class ClienteApplication {
         this.clienteService = clienteService;
     }
 
-    // GET /api/clientes
+
     @GetMapping
     public ResponseEntity<List<ClienteModel>> listarTodos() {
         List<ClienteModel> clientes = clienteService.listarTodos();
         return ResponseEntity.ok(clientes);
     }
 
-    // GET /api/clientes/{id}
+
     @GetMapping("/{id}")
     public ResponseEntity<ClienteModel> buscarPorId(@PathVariable Long id) {
         return clienteService.buscarPorId(id)
@@ -34,14 +34,12 @@ public class ClienteApplication {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // POST /api/clientes
     @PostMapping
     public ResponseEntity<ClienteModel> criar(@RequestBody ClienteModel clienteModel) {
         ClienteModel criado = clienteService.criar(clienteModel);
         return ResponseEntity.ok(criado);
     }
 
-    // PUT /api/clientes/{id}
     @PutMapping("/{id}")
     public ResponseEntity<ClienteModel> atualizar(@PathVariable Long id,
                                                   @RequestBody ClienteModel clienteModel) {
@@ -49,7 +47,6 @@ public class ClienteApplication {
         return ResponseEntity.ok(atualizado);
     }
 
-    // DELETE /api/clientes/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         clienteService.deletar(id);
