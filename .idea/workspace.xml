@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5571a9c9-478d-4a6b-b8d9-ad84ea9e1ac7" name="Changes" comment="Update">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/InstrutorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/InstrutorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/InstrutorTurmaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/InstrutorTurmaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/SalaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/SalaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/TurmaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/TurmaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controller/InstrutorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/InstrutorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controller/InstrutorTurmaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/InstrutorTurmaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controller/SalaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/SalaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controller/TurmaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/TurmaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Instrutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Instrutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/InstrutorTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/InstrutorTurma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Sala.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Sala.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Turma.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Turma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/InstrutorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/InstrutorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/InstrutorTurmaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/InstrutorTurmaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/SalaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/SalaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/TurmaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/TurmaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/InstrutorTurmaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/InstrutorTurmaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/TurmaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/TurmaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/InstrutorInterfaceMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/InstrutorInterfaceMySQLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/InstrutorTurmaInterfaceMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/InstrutorTurmaInterfaceMySQLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/SalaInterfaceMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/SalaInterfaceMySQLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/TurmaInterfaceMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/TurmaInterfaceMySQLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/InstrutorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/InstrutorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/InstrutorTurmaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/InstrutorTurmaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/SalaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/SalaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/TurmaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/TurmaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Fature/Matheca123" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Matheca123&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TiagoGeografiaBacharelado/Academia.git&quot;,
+    &quot;accountId&quot;: &quot;9d5c3193-34ea-4a3c-94ff-ba96c86c65ab&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2x9itQb2nhzkJ01KHIKGqbVNJsO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SmartAcademyApplication.executor": "Run",
+    "Maven.SmartAcademy [clean].executor": "Run",
+    "Maven.SmartAcademy [compile].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Fature/Matheca123",
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5571a9c9-478d-4a6b-b8d9-ad84ea9e1ac7" name="Changes" comment="" />
+      <created>1747356911656</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747356911656</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Update_completo">
+      <option name="closed" value="true" />
+      <created>1747359769960</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747359769960</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update">
+      <option name="closed" value="true" />
+      <created>1747360511576</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747360511576</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update">
+      <option name="closed" value="true" />
+      <created>1747361797107</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747361797107</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update_completo" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+  </component>
+</project>
