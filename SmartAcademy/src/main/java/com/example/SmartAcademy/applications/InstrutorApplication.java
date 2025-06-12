@@ -36,7 +36,7 @@ public class InstrutorApplication {
     @PostMapping
     public ResponseEntity<InstrutorModel> criar(@RequestBody InstrutorModel model) {
         InstrutorModel criado = instrutorService.criar(model);
-        return ResponseEntity.status(201).body(criado); // ou .ok() se preferir 200
+        return ResponseEntity.status(201).body(criado);
     }
 
     @PutMapping("/{id}")
