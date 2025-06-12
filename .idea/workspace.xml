@@ -5,33 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5571a9c9-478d-4a6b-b8d9-ad84ea9e1ac7" name="Changes" comment="Update">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Academia.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/PlanoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/applications/PlanoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/AtividadePlanoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/AtividadePlanoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/PlanoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/controllers/PlanoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Plano.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/entities/Plano.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/PlanoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/interfaces/PlanoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeInstrutorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeInstrutorModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadeModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadePlanoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/AtividadePlanoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/PlanoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/PlanoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/SalaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/SalaModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/TurmaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/models/TurmaModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/AtividadeInstrutorMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/MySQL/AtividadeInstrutorMySQLImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/AtividadeJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/AtividadeJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/AtividadePlanoJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/AtividadePlanoJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/PlanoJPA.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/repositories/jpa/PlanoJPA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/AtividadePlanoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/AtividadePlanoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/PlanoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SmartAcademy/src/main/java/com/example/SmartAcademy/services/PlanoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Academia.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,12 +60,12 @@
     &quot;assignee&quot;: &quot;Matheca123&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/TiagoGeografiaBacharelado/Academia.git&quot;,
-    &quot;accountId&quot;: &quot;9d5c3193-34ea-4a3c-94ff-ba96c86c65ab&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/TiagoGeografiaBacharelado/Academia.git",
+    "accountId": "9a2c5198-f3c6-4546-96e4-f6d6359e0849"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -99,9 +81,10 @@
     "Maven.SmartAcademy [compile].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "develop2",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/julia/Downloads/IA/Academia",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
