@@ -27,7 +27,7 @@ public class AtividadePlanoApplication {
         return ResponseEntity.ok(clientes);
     }
 
-    // GET /api/clientes/{id}
+   
     @GetMapping("/{id}")
     public ResponseEntity<Optional<AtividadePlanoModel>> buscarPorId(@PathVariable int id) {
         return atividadePlanoService.buscarPorId(id)
@@ -43,7 +43,6 @@ public class AtividadePlanoApplication {
     }
 
 
-    // PUT /api/clientes/{id}
     @PutMapping("/{id}")
     public ResponseEntity<AtividadePlanoModel> atualizar(@PathVariable int id,
                                                   @RequestBody AtividadePlanoModel atividadePlanoModel) {
@@ -51,7 +50,6 @@ public class AtividadePlanoApplication {
         return ResponseEntity.ok(atualizado);
     }
 
-    // DELETE /api/clientes/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable int id) {
         atividadePlanoService.deletar(id);
